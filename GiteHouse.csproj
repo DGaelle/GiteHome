@@ -146,6 +146,7 @@
     <Compile Include="Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HebergementsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Conversation.cs">
@@ -289,6 +290,11 @@
     <Content Include="Views\Hebergements\Details.cshtml" />
     <Content Include="Views\Hebergements\Edit.cshtml" />
     <Content Include="Views\Hebergements\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

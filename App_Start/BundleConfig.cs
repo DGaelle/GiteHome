@@ -20,11 +20,24 @@ namespace GiteHouse
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-notify.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/SiteScripts").Include(
+           "~/Scripts/sweetalert.min.js",
+           "~/fullcalendar/core/main.js",
+         "~/fullcalendar/timeline/main.js",
+         "~/fullcalendar/resource-common/main.js",
+         "~/fullcalendar/resource-timeline/main.js",
+         "~/DataTables/datatables.min.js"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/fontawesome-all.css",
+                      "~/Content/site.css",
+                      "~/Content/animate.min.css",
+                     "~/DataTables/datatables.min.css"));
         }
     }
 }

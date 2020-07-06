@@ -146,7 +146,9 @@
     <Compile Include="Avi.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\HebergementsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Conversation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -406,6 +408,11 @@
     <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
+    <Content Include="Views\Utilisateurs\Create.cshtml" />
+    <Content Include="Views\Utilisateurs\Delete.cshtml" />
+    <Content Include="Views\Utilisateurs\Details.cshtml" />
+    <Content Include="Views\Utilisateurs\Edit.cshtml" />
+    <Content Include="Views\Utilisateurs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

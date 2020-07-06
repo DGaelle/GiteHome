@@ -10,7 +10,8 @@
             <PropertyRef Name="IdActivite" />
           </Key>
           <Property Name="IdActivite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nom" Type="varchar" MaxLength="50" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsSelected" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ActiviteHebergement">
           <Key>
@@ -38,6 +39,14 @@
           <Property Name="CodePostal" Type="varchar" MaxLength="5" />
           <Property Name="Ville" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="AdresseUtilisateur">
+          <Key>
+            <PropertyRef Name="IdAdresse" />
+            <PropertyRef Name="IdUtilisateur" />
+          </Key>
+          <Property Name="IdAdresse" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="AppointmentDiary">
           <Key>
             <PropertyRef Name="ID" />
@@ -54,27 +63,12 @@
             <PropertyRef Name="IdAvi" />
           </Key>
           <Property Name="IdAvi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
           <Property Name="IdHebergement" Type="int" Nullable="false" />
           <Property Name="Note" Type="int" Nullable="false" />
           <Property Name="Commentaire" Type="varchar" MaxLength="300" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Reponse" Type="varchar" MaxLength="300" />
-        </EntityType>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="IdClient" />
-          </Key>
-          <Property Name="IdClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdGenre" Type="int" Nullable="false" />
-          <Property Name="IdAdresse" Type="int" Nullable="false" />
-          <Property Name="Nom" Type="varchar" MaxLength="50" />
-          <Property Name="Prenom" Type="varchar" MaxLength="50" />
-          <Property Name="Login" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
-          <Property Name="Telephone" Type="varchar" MaxLength="10" />
-          <Property Name="Email" Type="varchar" MaxLength="100" />
-          <Property Name="Age" Type="int" />
         </EntityType>
         <EntityType Name="Conversation">
           <Key>
@@ -85,12 +79,20 @@
           <Property Name="Titre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="departements">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="region_id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Equipement">
           <Key>
             <PropertyRef Name="IdEquipement" />
           </Key>
           <Property Name="IdEquipement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="75" Nullable="false" />
           <Property Name="Icone" Type="varchar" MaxLength="50" />
           <Property Name="IsSelected" Type="bit" Nullable="false" />
         </EntityType>
@@ -107,8 +109,9 @@
           </Key>
           <Property Name="IdHebergement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdTypeHebergement" Type="int" Nullable="false" />
-          <Property Name="IdProprietaire" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
           <Property Name="IdAdresse" Type="int" Nullable="false" />
+          <Property Name="IdVille" Type="int" />
           <Property Name="Nom" Type="varchar" MaxLength="50" />
           <Property Name="DescriptionCourte" Type="varchar" MaxLength="100" />
           <Property Name="DescriptionLongue" Type="varchar" MaxLength="300" />
@@ -119,7 +122,6 @@
           <Property Name="Fumeur" Type="bit" />
           <Property Name="PrixBase" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Statut" Type="bit" />
-          <Property Name="IdVille" Type="int" />
         </EntityType>
         <EntityType Name="HebergementAvi">
           <Key>
@@ -128,14 +130,6 @@
           </Key>
           <Property Name="IdHebergement" Type="int" Nullable="false" />
           <Property Name="IdAvi" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="HebergementClient">
-          <Key>
-            <PropertyRef Name="IdHebergement" />
-            <PropertyRef Name="IdClient" />
-          </Key>
-          <Property Name="IdHebergement" Type="int" Nullable="false" />
-          <Property Name="IdClient" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HebergementEquipement">
           <Key>
@@ -153,22 +147,13 @@
           <Property Name="IdHebergement" Type="int" Nullable="false" />
           <Property Name="IdMoyenPaiement" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Hote">
+        <EntityType Name="HebergementUtilisateur">
           <Key>
-            <PropertyRef Name="IdHote" />
+            <PropertyRef Name="IdHebergement" />
+            <PropertyRef Name="IdUtilisateur" />
           </Key>
-          <Property Name="IdHote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdGenre" Type="int" Nullable="false" />
-          <Property Name="Nom" Type="varchar" MaxLength="50" />
-          <Property Name="Prenom" Type="varchar" MaxLength="50" />
-          <Property Name="Login" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="Tel" Type="varchar" MaxLength="10" />
-          <Property Name="Mobile" Type="varchar" MaxLength="10" />
-          <Property Name="Adresse" Type="varchar" MaxLength="50" />
-          <Property Name="CodePostal" Type="varchar" MaxLength="5" />
-          <Property Name="Ville" Type="varchar" MaxLength="50" />
+          <Property Name="IdHebergement" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -187,7 +172,7 @@
             <PropertyRef Name="IdMessagerie" />
           </Key>
           <Property Name="IdMessagerie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdProprietaire" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
           <Property Name="IdHebergement" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Titre" Type="varchar" MaxLength="50" Nullable="false" />
@@ -217,7 +202,7 @@
             <PropertyRef Name="IdPrestation" />
           </Key>
           <Property Name="IdPrestation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdProprietaire" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" />
           <Property Name="Prix" Type="money" />
         </EntityType>
@@ -228,12 +213,19 @@
           <Property Name="IdRegion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <EntityType Name="regions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="Reservation">
           <Key>
             <PropertyRef Name="IdReservation" />
           </Key>
           <Property Name="IdReservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
           <Property Name="IdHebergement" Type="int" Nullable="false" />
           <Property Name="DateDebut" Type="date" />
           <Property Name="DateFin" Type="date" />
@@ -253,21 +245,11 @@
             <PropertyRef Name="IdSaison" />
           </Key>
           <Property Name="IdSaison" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdProprietaire" Type="int" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="int" Nullable="false" />
           <Property Name="DateDebut" Type="date" Nullable="false" />
           <Property Name="DateFin" Type="date" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PrixNuit" Type="money" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Tarification">
           <Key>
@@ -307,6 +289,22 @@
           <Property Name="IdTypeSejour" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="IdUtilisateur" />
+          </Key>
+          <Property Name="IdUtilisateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdGenre" Type="int" Nullable="false" />
+          <Property Name="IdAdresse" Type="int" Nullable="false" />
+          <Property Name="Hote" Type="bit" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ville">
           <Key>
             <PropertyRef Name="IdVille" />
@@ -315,6 +313,17 @@
           <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IdRegion" Type="int" Nullable="false" />
           <Property Name="IdHebergement" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="villes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="departement_id" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="codepostal" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
         </EntityType>
         <Association Name="FK_ActiviteHebergement_Activite">
           <End Role="Activite" Type="Self.Activite" Multiplicity="1" />
@@ -340,39 +349,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Avi_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Avi" Type="Self.Avi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="IdClient" />
-            </Principal>
-            <Dependent Role="Avi">
-              <PropertyRef Name="IdClient" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Client_Adresse">
+        <Association Name="FK_AdresseUtilisateur_Adresse">
           <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <End Role="AdresseUtilisateur" Type="Self.AdresseUtilisateur" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Adresse">
               <PropertyRef Name="IdAdresse" />
             </Principal>
-            <Dependent Role="Client">
+            <Dependent Role="AdresseUtilisateur">
               <PropertyRef Name="IdAdresse" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Client_Genre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+        <Association Name="FK_AdresseUtilisateur_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="AdresseUtilisateur" Type="Self.AdresseUtilisateur" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genre">
-              <PropertyRef Name="IdGenre" />
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
             </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="IdGenre" />
+            <Dependent Role="AdresseUtilisateur">
+              <PropertyRef Name="IdUtilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avi_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Avi" Type="Self.Avi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
+            </Principal>
+            <Dependent Role="Avi">
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -385,6 +394,20 @@
             </Principal>
             <Dependent Role="Conversation">
               <PropertyRef Name="IdHebergement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEPARTEMENTS_REGIONS">
+          <End Role="regions" Type="Self.regions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="departements" Type="Self.departements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="regions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="departements">
+              <PropertyRef Name="region_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -424,26 +447,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HebergementLike_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="HebergementClient" Type="Self.HebergementClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="IdClient" />
-            </Principal>
-            <Dependent Role="HebergementClient">
-              <PropertyRef Name="IdClient" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HebergementLike_Hebergement">
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="1" />
-          <End Role="HebergementClient" Type="Self.HebergementClient" Multiplicity="*" />
+          <End Role="HebergementUtilisateur" Type="Self.HebergementUtilisateur" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Hebergement">
               <PropertyRef Name="IdHebergement" />
             </Principal>
-            <Dependent Role="HebergementClient">
+            <Dependent Role="HebergementUtilisateur">
               <PropertyRef Name="IdHebergement" />
             </Dependent>
           </ReferentialConstraint>
@@ -472,15 +483,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HebergementUtilisateur_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="HebergementUtilisateur" Type="Self.HebergementUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
+            </Principal>
+            <Dependent Role="HebergementUtilisateur">
+              <PropertyRef Name="IdUtilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Logement_Proprietaire">
-          <End Role="Hote" Type="Self.Hote" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Hote">
-              <PropertyRef Name="IdHote" />
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
             </Principal>
             <Dependent Role="Hebergement">
-              <PropertyRef Name="IdProprietaire" />
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -545,14 +568,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Messagerie_Proprietaire">
-          <End Role="Hote" Type="Self.Hote" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Messagerie" Type="Self.Messagerie" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Hote">
-              <PropertyRef Name="IdHote" />
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
             </Principal>
             <Dependent Role="Messagerie">
-              <PropertyRef Name="IdProprietaire" />
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -568,30 +591,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Proprietaire_Genre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
-          <End Role="Hote" Type="Self.Hote" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genre">
-              <PropertyRef Name="IdGenre" />
-            </Principal>
-            <Dependent Role="Hote">
-              <PropertyRef Name="IdGenre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservation_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="IdClient" />
-            </Principal>
-            <Dependent Role="Reservation">
-              <PropertyRef Name="IdClient" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Reservation_Hebergement">
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="1" />
           <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
@@ -601,6 +600,18 @@
             </Principal>
             <Dependent Role="Reservation">
               <PropertyRef Name="IdHebergement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -629,14 +640,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Saison_Proprietaire">
-          <End Role="Hote" Type="Self.Hote" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Saison" Type="Self.Saison" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Hote">
-              <PropertyRef Name="IdHote" />
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
             </Principal>
             <Dependent Role="Saison">
-              <PropertyRef Name="IdProprietaire" />
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,6 +699,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Utilisateur_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="IdGenre" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="IdGenre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ville_Hebergement">
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="1" />
           <End Role="Ville" Type="Self.Ville" Multiplicity="*" />
@@ -712,39 +735,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VILLES_DEPARTEMENTS">
+          <End Role="departements" Type="Self.departements" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="villes" Type="Self.villes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departements">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="villes">
+              <PropertyRef Name="departement_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GiteHouseModelStoreContainer">
           <EntitySet Name="Activite" EntityType="Self.Activite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiviteHebergement" EntityType="Self.ActiviteHebergement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Administrateur" EntityType="Self.Administrateur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adresse" EntityType="Self.Adresse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdresseUtilisateur" EntityType="Self.AdresseUtilisateur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppointmentDiary" EntityType="Self.AppointmentDiary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Avi" EntityType="Self.Avi" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conversation" EntityType="Self.Conversation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departements" EntityType="Self.departements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipement" EntityType="Self.Equipement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hebergement" EntityType="Self.Hebergement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HebergementAvi" EntityType="Self.HebergementAvi" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HebergementClient" EntityType="Self.HebergementClient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HebergementEquipement" EntityType="Self.HebergementEquipement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HebergementMoyenPaiement" EntityType="Self.HebergementMoyenPaiement" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Hote" EntityType="Self.Hote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HebergementUtilisateur" EntityType="Self.HebergementUtilisateur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messagerie" EntityType="Self.Messagerie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MoyenPaiement" EntityType="Self.MoyenPaiement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prestation" EntityType="Self.Prestation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="regions" EntityType="Self.regions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReservationMoyenPaiement" EntityType="Self.ReservationMoyenPaiement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Saison" EntityType="Self.Saison" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarification" EntityType="Self.Tarification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Theme" EntityType="Self.Theme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThemeHebergement" EntityType="Self.ThemeHebergement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeHebergement" EntityType="Self.TypeHebergement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeSejour" EntityType="Self.TypeSejour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ville" EntityType="Self.Ville" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="villes" EntityType="Self.villes" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ActiviteHebergement_Activite" Association="Self.FK_ActiviteHebergement_Activite">
             <End Role="Activite" EntitySet="Activite" />
             <End Role="ActiviteHebergement" EntitySet="ActiviteHebergement" />
@@ -753,21 +792,25 @@
             <End Role="Hebergement" EntitySet="Hebergement" />
             <End Role="ActiviteHebergement" EntitySet="ActiviteHebergement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Avi_Client" Association="Self.FK_Avi_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Avi" EntitySet="Avi" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Client_Adresse" Association="Self.FK_Client_Adresse">
+          <AssociationSet Name="FK_AdresseUtilisateur_Adresse" Association="Self.FK_AdresseUtilisateur_Adresse">
             <End Role="Adresse" EntitySet="Adresse" />
-            <End Role="Client" EntitySet="Client" />
+            <End Role="AdresseUtilisateur" EntitySet="AdresseUtilisateur" />
           </AssociationSet>
-          <AssociationSet Name="FK_Client_Genre" Association="Self.FK_Client_Genre">
-            <End Role="Genre" EntitySet="Genre" />
-            <End Role="Client" EntitySet="Client" />
+          <AssociationSet Name="FK_AdresseUtilisateur_Utilisateur" Association="Self.FK_AdresseUtilisateur_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="AdresseUtilisateur" EntitySet="AdresseUtilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avi_Utilisateur" Association="Self.FK_Avi_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Avi" EntitySet="Avi" />
           </AssociationSet>
           <AssociationSet Name="FK_Conversation_Hebergement" Association="Self.FK_Conversation_Hebergement">
             <End Role="Hebergement" EntitySet="Hebergement" />
             <End Role="Conversation" EntitySet="Conversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEPARTEMENTS_REGIONS" Association="Self.FK_DEPARTEMENTS_REGIONS">
+            <End Role="regions" EntitySet="regions" />
+            <End Role="departements" EntitySet="departements" />
           </AssociationSet>
           <AssociationSet Name="FK_Hebergement_Adresse" Association="Self.FK_Hebergement_Adresse">
             <End Role="Adresse" EntitySet="Adresse" />
@@ -781,13 +824,9 @@
             <End Role="Hebergement" EntitySet="Hebergement" />
             <End Role="HebergementAvi" EntitySet="HebergementAvi" />
           </AssociationSet>
-          <AssociationSet Name="FK_HebergementLike_Client" Association="Self.FK_HebergementLike_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="HebergementClient" EntitySet="HebergementClient" />
-          </AssociationSet>
           <AssociationSet Name="FK_HebergementLike_Hebergement" Association="Self.FK_HebergementLike_Hebergement">
             <End Role="Hebergement" EntitySet="Hebergement" />
-            <End Role="HebergementClient" EntitySet="HebergementClient" />
+            <End Role="HebergementUtilisateur" EntitySet="HebergementUtilisateur" />
           </AssociationSet>
           <AssociationSet Name="FK_HebergementMoyenPaiement_Hebergement" Association="Self.FK_HebergementMoyenPaiement_Hebergement">
             <End Role="Hebergement" EntitySet="Hebergement" />
@@ -797,8 +836,12 @@
             <End Role="MoyenPaiement" EntitySet="MoyenPaiement" />
             <End Role="HebergementMoyenPaiement" EntitySet="HebergementMoyenPaiement" />
           </AssociationSet>
+          <AssociationSet Name="FK_HebergementUtilisateur_Utilisateur" Association="Self.FK_HebergementUtilisateur_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="HebergementUtilisateur" EntitySet="HebergementUtilisateur" />
+          </AssociationSet>
           <AssociationSet Name="FK_Logement_Proprietaire" Association="Self.FK_Logement_Proprietaire">
-            <End Role="Hote" EntitySet="Hote" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Hebergement" EntitySet="Hebergement" />
           </AssociationSet>
           <AssociationSet Name="FK_Logement_TypeLogement" Association="Self.FK_Logement_TypeLogement">
@@ -822,23 +865,19 @@
             <End Role="Messagerie" EntitySet="Messagerie" />
           </AssociationSet>
           <AssociationSet Name="FK_Messagerie_Proprietaire" Association="Self.FK_Messagerie_Proprietaire">
-            <End Role="Hote" EntitySet="Hote" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Messagerie" EntitySet="Messagerie" />
           </AssociationSet>
           <AssociationSet Name="FK_Photo_Hebergement" Association="Self.FK_Photo_Hebergement">
             <End Role="Hebergement" EntitySet="Hebergement" />
             <End Role="Photo" EntitySet="Photo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Proprietaire_Genre" Association="Self.FK_Proprietaire_Genre">
-            <End Role="Genre" EntitySet="Genre" />
-            <End Role="Hote" EntitySet="Hote" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservation_Client" Association="Self.FK_Reservation_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Reservation" EntitySet="Reservation" />
-          </AssociationSet>
           <AssociationSet Name="FK_Reservation_Hebergement" Association="Self.FK_Reservation_Hebergement">
             <End Role="Hebergement" EntitySet="Hebergement" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Utilisateur" Association="Self.FK_Reservation_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Reservation" EntitySet="Reservation" />
           </AssociationSet>
           <AssociationSet Name="FK_ReservationMoyenPaiement_MoyenPaiement" Association="Self.FK_ReservationMoyenPaiement_MoyenPaiement">
@@ -850,7 +889,7 @@
             <End Role="ReservationMoyenPaiement" EntitySet="ReservationMoyenPaiement" />
           </AssociationSet>
           <AssociationSet Name="FK_Saison_Proprietaire" Association="Self.FK_Saison_Proprietaire">
-            <End Role="Hote" EntitySet="Hote" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Saison" EntitySet="Saison" />
           </AssociationSet>
           <AssociationSet Name="FK_Tarification_Hebergement" Association="Self.FK_Tarification_Hebergement">
@@ -869,6 +908,10 @@
             <End Role="Theme" EntitySet="Theme" />
             <End Role="ThemeHebergement" EntitySet="ThemeHebergement" />
           </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Genre" Association="Self.FK_Utilisateur_Genre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
           <AssociationSet Name="FK_Ville_Hebergement" Association="Self.FK_Ville_Hebergement">
             <End Role="Hebergement" EntitySet="Hebergement" />
             <End Role="Ville" EntitySet="Ville" />
@@ -876,6 +919,10 @@
           <AssociationSet Name="FK_VilleCure_Region" Association="Self.FK_VilleCure_Region">
             <End Role="Region" EntitySet="Region" />
             <End Role="Ville" EntitySet="Ville" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VILLES_DEPARTEMENTS" Association="Self.FK_VILLES_DEPARTEMENTS">
+            <End Role="departements" EntitySet="departements" />
+            <End Role="villes" EntitySet="villes" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -888,7 +935,8 @@
             <PropertyRef Name="IdActivite" />
           </Key>
           <Property Name="IdActivite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsSelected" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Hebergements" Relationship="Self.ActiviteHebergement" FromRole="Activite" ToRole="Hebergement" />
         </EntityType>
         <EntityType Name="Administrateur">
@@ -908,8 +956,8 @@
           <Property Name="Adresse1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="CodePostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_Client_Adresse" FromRole="Adresse" ToRole="Client" />
           <NavigationProperty Name="Hebergements" Relationship="Self.FK_Hebergement_Adresse" FromRole="Adresse" ToRole="Hebergement" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.AdresseUtilisateur" FromRole="Adresse" ToRole="Utilisateur" />
         </EntityType>
         <EntityType Name="AppointmentDiary">
           <Key>
@@ -927,34 +975,14 @@
             <PropertyRef Name="IdAvi" />
           </Key>
           <Property Name="IdAvi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
           <Property Name="IdHebergement" Type="Int32" Nullable="false" />
           <Property Name="Note" Type="Int32" Nullable="false" />
           <Property Name="Commentaire" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Reponse" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_Avi_Client" FromRole="Avi" ToRole="Client" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Avi_Utilisateur" FromRole="Avi" ToRole="Utilisateur" />
           <NavigationProperty Name="Hebergements" Relationship="Self.HebergementAvi" FromRole="Avi" ToRole="Hebergement" />
-        </EntityType>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="IdClient" />
-          </Key>
-          <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdGenre" Type="Int32" Nullable="false" />
-          <Property Name="IdAdresse" Type="Int32" Nullable="false" />
-          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Age" Type="Int32" />
-          <NavigationProperty Name="Adresse" Relationship="Self.FK_Client_Adresse" FromRole="Client" ToRole="Adresse" />
-          <NavigationProperty Name="Avis" Relationship="Self.FK_Avi_Client" FromRole="Client" ToRole="Avi" />
-          <NavigationProperty Name="Genre" Relationship="Self.FK_Client_Genre" FromRole="Client" ToRole="Genre" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_Client" FromRole="Client" ToRole="Reservation" />
-          <NavigationProperty Name="Hebergements" Relationship="Self.HebergementClient" FromRole="Client" ToRole="Hebergement" />
         </EntityType>
         <EntityType Name="Conversation">
           <Key>
@@ -967,12 +995,22 @@
           <NavigationProperty Name="Hebergement" Relationship="Self.FK_Conversation_Hebergement" FromRole="Conversation" ToRole="Hebergement" />
           <NavigationProperty Name="Messages" Relationship="Self.FK_Message_Conversation" FromRole="Conversation" ToRole="Message" />
         </EntityType>
+        <EntityType Name="departement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="region_id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="region" Relationship="Self.FK_DEPARTEMENTS_REGIONS" FromRole="departements" ToRole="regions" />
+          <NavigationProperty Name="villes" Relationship="Self.FK_VILLES_DEPARTEMENTS" FromRole="departements" ToRole="villes" />
+        </EntityType>
         <EntityType Name="Equipement">
           <Key>
             <PropertyRef Name="IdEquipement" />
           </Key>
           <Property Name="IdEquipement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Icone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsSelected" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Hebergements" Relationship="Self.HebergementEquipement" FromRole="Equipement" ToRole="Hebergement" />
@@ -983,8 +1021,7 @@
           </Key>
           <Property Name="IdGenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_Client_Genre" FromRole="Genre" ToRole="Client" />
-          <NavigationProperty Name="Hotes" Relationship="Self.FK_Proprietaire_Genre" FromRole="Genre" ToRole="Hote" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.FK_Utilisateur_Genre" FromRole="Genre" ToRole="Utilisateur" />
         </EntityType>
         <EntityType Name="Hebergement">
           <Key>
@@ -992,8 +1029,9 @@
           </Key>
           <Property Name="IdHebergement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdTypeHebergement" Type="Int32" Nullable="false" />
-          <Property Name="IdProprietaire" Type="Int32" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
           <Property Name="IdAdresse" Type="Int32" Nullable="false" />
+          <Property Name="IdVille" Type="Int32" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DescriptionCourte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DescriptionLongue" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
@@ -1004,10 +1042,9 @@
           <Property Name="Fumeur" Type="Boolean" />
           <Property Name="PrixBase" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Statut" Type="Boolean" />
-          <Property Name="IdVille" Type="Int32" />
           <NavigationProperty Name="Adresse" Relationship="Self.FK_Hebergement_Adresse" FromRole="Hebergement" ToRole="Adresse" />
           <NavigationProperty Name="Conversations" Relationship="Self.FK_Conversation_Hebergement" FromRole="Hebergement" ToRole="Conversation" />
-          <NavigationProperty Name="Hote" Relationship="Self.FK_Logement_Proprietaire" FromRole="Hebergement" ToRole="Hote" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Logement_Proprietaire" FromRole="Hebergement" ToRole="Utilisateur" />
           <NavigationProperty Name="TypeHebergement" Relationship="Self.FK_Logement_TypeLogement" FromRole="Hebergement" ToRole="TypeHebergement" />
           <NavigationProperty Name="Messageries" Relationship="Self.FK_Messagerie_Hebergement" FromRole="Hebergement" ToRole="Messagerie" />
           <NavigationProperty Name="Photos" Relationship="Self.FK_Photo_Hebergement" FromRole="Hebergement" ToRole="Photo" />
@@ -1016,31 +1053,10 @@
           <NavigationProperty Name="Villes" Relationship="Self.FK_Ville_Hebergement" FromRole="Hebergement" ToRole="Ville" />
           <NavigationProperty Name="Activites" Relationship="Self.ActiviteHebergement" FromRole="Hebergement" ToRole="Activite" />
           <NavigationProperty Name="Avis" Relationship="Self.HebergementAvi" FromRole="Hebergement" ToRole="Avi" />
-          <NavigationProperty Name="Clients" Relationship="Self.HebergementClient" FromRole="Hebergement" ToRole="Client" />
           <NavigationProperty Name="Equipements" Relationship="Self.HebergementEquipement" FromRole="Hebergement" ToRole="Equipement" />
           <NavigationProperty Name="MoyenPaiements" Relationship="Self.HebergementMoyenPaiement" FromRole="Hebergement" ToRole="MoyenPaiement" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.HebergementUtilisateur" FromRole="Hebergement" ToRole="Utilisateur" />
           <NavigationProperty Name="Themes" Relationship="Self.ThemeHebergement" FromRole="Hebergement" ToRole="Theme" />
-        </EntityType>
-        <EntityType Name="Hote">
-          <Key>
-            <PropertyRef Name="IdHote" />
-          </Key>
-          <Property Name="IdHote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdGenre" Type="Int32" Nullable="false" />
-          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Tel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CodePostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Genre" Relationship="Self.FK_Proprietaire_Genre" FromRole="Hote" ToRole="Genre" />
-          <NavigationProperty Name="Hebergements" Relationship="Self.FK_Logement_Proprietaire" FromRole="Hote" ToRole="Hebergement" />
-          <NavigationProperty Name="Messageries" Relationship="Self.FK_Messagerie_Proprietaire" FromRole="Hote" ToRole="Messagerie" />
-          <NavigationProperty Name="Saisons" Relationship="Self.FK_Saison_Proprietaire" FromRole="Hote" ToRole="Saison" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -1060,13 +1076,13 @@
             <PropertyRef Name="IdMessagerie" />
           </Key>
           <Property Name="IdMessagerie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdProprietaire" Type="Int32" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
           <Property Name="IdHebergement" Type="Int32" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Titre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Texte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Hebergement" Relationship="Self.FK_Messagerie_Hebergement" FromRole="Messagerie" ToRole="Hebergement" />
-          <NavigationProperty Name="Hote" Relationship="Self.FK_Messagerie_Proprietaire" FromRole="Messagerie" ToRole="Hote" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Messagerie_Proprietaire" FromRole="Messagerie" ToRole="Utilisateur" />
         </EntityType>
         <EntityType Name="MoyenPaiement">
           <Key>
@@ -1095,7 +1111,7 @@
             <PropertyRef Name="IdPrestation" />
           </Key>
           <Property Name="IdPrestation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdProprietaire" Type="Int32" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
@@ -1107,19 +1123,27 @@
           <Property Name="Nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Villes" Relationship="Self.FK_VilleCure_Region" FromRole="Region" ToRole="Ville" />
         </EntityType>
+        <EntityType Name="region1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="departements" Relationship="Self.FK_DEPARTEMENTS_REGIONS" FromRole="regions" ToRole="departements" />
+        </EntityType>
         <EntityType Name="Reservation">
           <Key>
             <PropertyRef Name="IdReservation" />
           </Key>
           <Property Name="IdReservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
           <Property Name="IdHebergement" Type="Int32" Nullable="false" />
           <Property Name="DateDebut" Type="DateTime" Precision="0" />
           <Property Name="DateFin" Type="DateTime" Precision="0" />
           <Property Name="Message" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Prix" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_Reservation_Client" FromRole="Reservation" ToRole="Client" />
           <NavigationProperty Name="Hebergement" Relationship="Self.FK_Reservation_Hebergement" FromRole="Reservation" ToRole="Hebergement" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Reservation_Utilisateur" FromRole="Reservation" ToRole="Utilisateur" />
           <NavigationProperty Name="MoyenPaiements" Relationship="Self.ReservationMoyenPaiement" FromRole="Reservation" ToRole="MoyenPaiement" />
         </EntityType>
         <EntityType Name="Saison">
@@ -1127,23 +1151,13 @@
             <PropertyRef Name="IdSaison" />
           </Key>
           <Property Name="IdSaison" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdProprietaire" Type="Int32" Nullable="false" />
+          <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
           <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PrixNuit" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Hote" Relationship="Self.FK_Saison_Proprietaire" FromRole="Saison" ToRole="Hote" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Saison_Proprietaire" FromRole="Saison" ToRole="Utilisateur" />
           <NavigationProperty Name="Tarifications" Relationship="Self.FK_Tarification_Saison" FromRole="Saison" ToRole="Tarification" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Tarification">
           <Key>
@@ -1179,6 +1193,30 @@
           <Property Name="IdTypeSejour" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="IdUtilisateur" />
+          </Key>
+          <Property Name="IdUtilisateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdGenre" Type="Int32" Nullable="false" />
+          <Property Name="IdAdresse" Type="Int32" Nullable="false" />
+          <Property Name="Hote" Type="Boolean" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Avis" Relationship="Self.FK_Avi_Utilisateur" FromRole="Utilisateur" ToRole="Avi" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_Utilisateur_Genre" FromRole="Utilisateur" ToRole="Genre" />
+          <NavigationProperty Name="Hebergements" Relationship="Self.FK_Logement_Proprietaire" FromRole="Utilisateur" ToRole="Hebergement" />
+          <NavigationProperty Name="Messageries" Relationship="Self.FK_Messagerie_Proprietaire" FromRole="Utilisateur" ToRole="Messagerie" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_Utilisateur" FromRole="Utilisateur" ToRole="Reservation" />
+          <NavigationProperty Name="Saisons" Relationship="Self.FK_Saison_Proprietaire" FromRole="Utilisateur" ToRole="Saison" />
+          <NavigationProperty Name="Adresses" Relationship="Self.AdresseUtilisateur" FromRole="Utilisateur" ToRole="Adresse" />
+          <NavigationProperty Name="Hebergements1" Relationship="Self.HebergementUtilisateur" FromRole="Utilisateur" ToRole="Hebergement" />
+        </EntityType>
         <EntityType Name="Ville">
           <Key>
             <PropertyRef Name="IdVille" />
@@ -1190,18 +1228,18 @@
           <NavigationProperty Name="Hebergement" Relationship="Self.FK_Ville_Hebergement" FromRole="Ville" ToRole="Hebergement" />
           <NavigationProperty Name="Region" Relationship="Self.FK_VilleCure_Region" FromRole="Ville" ToRole="Region" />
         </EntityType>
-        <Association Name="FK_Client_Adresse">
-          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adresse">
-              <PropertyRef Name="IdAdresse" />
-            </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="IdAdresse" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="ville1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="departement_id" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codepostal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="departement" Relationship="Self.FK_VILLES_DEPARTEMENTS" FromRole="villes" ToRole="departements" />
+        </EntityType>
         <Association Name="FK_Hebergement_Adresse">
           <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
@@ -1214,39 +1252,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Avi_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+        <Association Name="FK_Avi_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Avi" Type="Self.Avi" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="IdClient" />
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
             </Principal>
             <Dependent Role="Avi">
-              <PropertyRef Name="IdClient" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Client_Genre">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genre">
-              <PropertyRef Name="IdGenre" />
-            </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="IdGenre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservation_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="IdClient" />
-            </Principal>
-            <Dependent Role="Reservation">
-              <PropertyRef Name="IdClient" />
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1274,27 +1288,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Proprietaire_Genre">
+        <Association Name="FK_DEPARTEMENTS_REGIONS">
+          <End Role="regions" Type="Self.region1" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="departements" Type="Self.departement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="regions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="departements">
+              <PropertyRef Name="region_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VILLES_DEPARTEMENTS">
+          <End Role="departements" Type="Self.departement" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="villes" Type="Self.ville1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departements">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="villes">
+              <PropertyRef Name="departement_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur_Genre">
           <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
-          <End Role="Hote" Type="Self.Hote" Multiplicity="*" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genre">
               <PropertyRef Name="IdGenre" />
             </Principal>
-            <Dependent Role="Hote">
+            <Dependent Role="Utilisateur">
               <PropertyRef Name="IdGenre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Logement_Proprietaire">
-          <End Role="Hote" Type="Self.Hote" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Hote">
-              <PropertyRef Name="IdHote" />
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
             </Principal>
             <Dependent Role="Hebergement">
-              <PropertyRef Name="IdProprietaire" />
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1371,26 +1413,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Messagerie_Proprietaire">
-          <End Role="Hote" Type="Self.Hote" Multiplicity="1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Messagerie" Type="Self.Messagerie" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Hote">
-              <PropertyRef Name="IdHote" />
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
             </Principal>
             <Dependent Role="Messagerie">
-              <PropertyRef Name="IdProprietaire" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Saison_Proprietaire">
-          <End Role="Hote" Type="Self.Hote" Multiplicity="1" />
-          <End Role="Saison" Type="Self.Saison" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hote">
-              <PropertyRef Name="IdHote" />
-            </Principal>
-            <Dependent Role="Saison">
-              <PropertyRef Name="IdProprietaire" />
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1403,6 +1433,30 @@
             </Principal>
             <Dependent Role="Ville">
               <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="IdUtilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saison_Proprietaire">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Saison" Type="Self.Saison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="IdUtilisateur" />
+            </Principal>
+            <Dependent Role="Saison">
+              <PropertyRef Name="IdUtilisateur" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1422,12 +1476,12 @@
           <End Role="Activite" Type="Self.Activite" Multiplicity="*" />
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
         </Association>
+        <Association Name="AdresseUtilisateur">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="*" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+        </Association>
         <Association Name="HebergementAvi">
           <End Role="Avi" Type="Self.Avi" Multiplicity="*" />
-          <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
-        </Association>
-        <Association Name="HebergementClient">
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
         </Association>
         <Association Name="HebergementEquipement">
@@ -1438,6 +1492,10 @@
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
           <End Role="MoyenPaiement" Type="Self.MoyenPaiement" Multiplicity="*" />
         </Association>
+        <Association Name="HebergementUtilisateur">
+          <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+        </Association>
         <Association Name="ReservationMoyenPaiement">
           <End Role="MoyenPaiement" Type="Self.MoyenPaiement" Multiplicity="*" />
           <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
@@ -1446,51 +1504,40 @@
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
           <End Role="Theme" Type="Self.Theme" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="GiteHouseEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GiteHouseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activites" EntityType="Self.Activite" />
           <EntitySet Name="Administrateurs" EntityType="Self.Administrateur" />
           <EntitySet Name="Adresses" EntityType="Self.Adresse" />
           <EntitySet Name="AppointmentDiaries" EntityType="Self.AppointmentDiary" />
           <EntitySet Name="Avis" EntityType="Self.Avi" />
-          <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Conversations" EntityType="Self.Conversation" />
+          <EntitySet Name="departements" EntityType="Self.departement" />
           <EntitySet Name="Equipements" EntityType="Self.Equipement" />
           <EntitySet Name="Genres" EntityType="Self.Genre" />
           <EntitySet Name="Hebergements" EntityType="Self.Hebergement" />
-          <EntitySet Name="Hotes" EntityType="Self.Hote" />
           <EntitySet Name="Messages" EntityType="Self.Message" />
           <EntitySet Name="Messageries" EntityType="Self.Messagerie" />
           <EntitySet Name="MoyenPaiements" EntityType="Self.MoyenPaiement" />
           <EntitySet Name="Photos" EntityType="Self.Photo" />
           <EntitySet Name="Prestations" EntityType="Self.Prestation" />
           <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="regions1" EntityType="Self.region1" />
           <EntitySet Name="Reservations" EntityType="Self.Reservation" />
           <EntitySet Name="Saisons" EntityType="Self.Saison" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tarifications" EntityType="Self.Tarification" />
           <EntitySet Name="Themes" EntityType="Self.Theme" />
           <EntitySet Name="TypeHebergements" EntityType="Self.TypeHebergement" />
           <EntitySet Name="TypeSejours" EntityType="Self.TypeSejour" />
+          <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
           <EntitySet Name="Villes" EntityType="Self.Ville" />
-          <AssociationSet Name="FK_Client_Adresse" Association="Self.FK_Client_Adresse">
-            <End Role="Adresse" EntitySet="Adresses" />
-            <End Role="Client" EntitySet="Clients" />
-          </AssociationSet>
+          <EntitySet Name="villes1" EntityType="Self.ville1" />
           <AssociationSet Name="FK_Hebergement_Adresse" Association="Self.FK_Hebergement_Adresse">
             <End Role="Adresse" EntitySet="Adresses" />
             <End Role="Hebergement" EntitySet="Hebergements" />
           </AssociationSet>
-          <AssociationSet Name="FK_Avi_Client" Association="Self.FK_Avi_Client">
-            <End Role="Client" EntitySet="Clients" />
+          <AssociationSet Name="FK_Avi_Utilisateur" Association="Self.FK_Avi_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
             <End Role="Avi" EntitySet="Avis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Client_Genre" Association="Self.FK_Client_Genre">
-            <End Role="Genre" EntitySet="Genres" />
-            <End Role="Client" EntitySet="Clients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservation_Client" Association="Self.FK_Reservation_Client">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Reservation" EntitySet="Reservations" />
           </AssociationSet>
           <AssociationSet Name="FK_Conversation_Hebergement" Association="Self.FK_Conversation_Hebergement">
             <End Role="Hebergement" EntitySet="Hebergements" />
@@ -1500,12 +1547,20 @@
             <End Role="Conversation" EntitySet="Conversations" />
             <End Role="Message" EntitySet="Messages" />
           </AssociationSet>
-          <AssociationSet Name="FK_Proprietaire_Genre" Association="Self.FK_Proprietaire_Genre">
+          <AssociationSet Name="FK_DEPARTEMENTS_REGIONS" Association="Self.FK_DEPARTEMENTS_REGIONS">
+            <End Role="regions" EntitySet="regions1" />
+            <End Role="departements" EntitySet="departements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VILLES_DEPARTEMENTS" Association="Self.FK_VILLES_DEPARTEMENTS">
+            <End Role="departements" EntitySet="departements" />
+            <End Role="villes" EntitySet="villes1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur_Genre" Association="Self.FK_Utilisateur_Genre">
             <End Role="Genre" EntitySet="Genres" />
-            <End Role="Hote" EntitySet="Hotes" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
           </AssociationSet>
           <AssociationSet Name="FK_Logement_Proprietaire" Association="Self.FK_Logement_Proprietaire">
-            <End Role="Hote" EntitySet="Hotes" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
             <End Role="Hebergement" EntitySet="Hebergements" />
           </AssociationSet>
           <AssociationSet Name="FK_Logement_TypeLogement" Association="Self.FK_Logement_TypeLogement">
@@ -1533,16 +1588,20 @@
             <End Role="Ville" EntitySet="Villes" />
           </AssociationSet>
           <AssociationSet Name="FK_Messagerie_Proprietaire" Association="Self.FK_Messagerie_Proprietaire">
-            <End Role="Hote" EntitySet="Hotes" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
             <End Role="Messagerie" EntitySet="Messageries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Saison_Proprietaire" Association="Self.FK_Saison_Proprietaire">
-            <End Role="Hote" EntitySet="Hotes" />
-            <End Role="Saison" EntitySet="Saisons" />
           </AssociationSet>
           <AssociationSet Name="FK_VilleCure_Region" Association="Self.FK_VilleCure_Region">
             <End Role="Region" EntitySet="Regions" />
             <End Role="Ville" EntitySet="Villes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Utilisateur" Association="Self.FK_Reservation_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saison_Proprietaire" Association="Self.FK_Saison_Proprietaire">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Saison" EntitySet="Saisons" />
           </AssociationSet>
           <AssociationSet Name="FK_Tarification_Saison" Association="Self.FK_Tarification_Saison">
             <End Role="Saison" EntitySet="Saisons" />
@@ -1552,12 +1611,12 @@
             <End Role="Activite" EntitySet="Activites" />
             <End Role="Hebergement" EntitySet="Hebergements" />
           </AssociationSet>
+          <AssociationSet Name="AdresseUtilisateur" Association="Self.AdresseUtilisateur">
+            <End Role="Adresse" EntitySet="Adresses" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
           <AssociationSet Name="HebergementAvi" Association="Self.HebergementAvi">
             <End Role="Avi" EntitySet="Avis" />
-            <End Role="Hebergement" EntitySet="Hebergements" />
-          </AssociationSet>
-          <AssociationSet Name="HebergementClient" Association="Self.HebergementClient">
-            <End Role="Client" EntitySet="Clients" />
             <End Role="Hebergement" EntitySet="Hebergements" />
           </AssociationSet>
           <AssociationSet Name="HebergementEquipement" Association="Self.HebergementEquipement">
@@ -1567,6 +1626,10 @@
           <AssociationSet Name="HebergementMoyenPaiement" Association="Self.HebergementMoyenPaiement">
             <End Role="Hebergement" EntitySet="Hebergements" />
             <End Role="MoyenPaiement" EntitySet="MoyenPaiements" />
+          </AssociationSet>
+          <AssociationSet Name="HebergementUtilisateur" Association="Self.HebergementUtilisateur">
+            <End Role="Hebergement" EntitySet="Hebergements" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
           </AssociationSet>
           <AssociationSet Name="ReservationMoyenPaiement" Association="Self.ReservationMoyenPaiement">
             <End Role="MoyenPaiement" EntitySet="MoyenPaiements" />
@@ -1582,12 +1645,13 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GiteHouseModelStoreContainer" CdmEntityContainer="GiteHouseEntities1">
+        <EntityContainerMapping StorageEntityContainer="GiteHouseModelStoreContainer" CdmEntityContainer="GiteHouseEntities">
           <EntitySetMapping Name="Activites">
             <EntityTypeMapping TypeName="GiteHouseModel.Activite">
               <MappingFragment StoreEntitySet="Activite">
                 <ScalarProperty Name="IdActivite" ColumnName="IdActivite" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1627,28 +1691,12 @@
             <EntityTypeMapping TypeName="GiteHouseModel.Avi">
               <MappingFragment StoreEntitySet="Avi">
                 <ScalarProperty Name="IdAvi" ColumnName="IdAvi" />
-                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Reponse" ColumnName="Reponse" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="GiteHouseModel.Client">
-              <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
-                <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
-                <ScalarProperty Name="IdAdresse" ColumnName="IdAdresse" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1659,6 +1707,15 @@
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
                 <ScalarProperty Name="Titre" ColumnName="Titre" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departements">
+            <EntityTypeMapping TypeName="GiteHouseModel.departement">
+              <MappingFragment StoreEntitySet="departements">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1685,8 +1742,9 @@
               <MappingFragment StoreEntitySet="Hebergement">
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
                 <ScalarProperty Name="IdTypeHebergement" ColumnName="IdTypeHebergement" />
-                <ScalarProperty Name="IdProprietaire" ColumnName="IdProprietaire" />
+                <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
                 <ScalarProperty Name="IdAdresse" ColumnName="IdAdresse" />
+                <ScalarProperty Name="IdVille" ColumnName="IdVille" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="DescriptionCourte" ColumnName="DescriptionCourte" />
                 <ScalarProperty Name="DescriptionLongue" ColumnName="DescriptionLongue" />
@@ -1697,25 +1755,6 @@
                 <ScalarProperty Name="Fumeur" ColumnName="Fumeur" />
                 <ScalarProperty Name="PrixBase" ColumnName="PrixBase" />
                 <ScalarProperty Name="Statut" ColumnName="Statut" />
-                <ScalarProperty Name="IdVille" ColumnName="IdVille" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotes">
-            <EntityTypeMapping TypeName="GiteHouseModel.Hote">
-              <MappingFragment StoreEntitySet="Hote">
-                <ScalarProperty Name="IdHote" ColumnName="IdHote" />
-                <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
-                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Tel" ColumnName="Tel" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
-                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
-                <ScalarProperty Name="Ville" ColumnName="Ville" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1736,7 +1775,7 @@
             <EntityTypeMapping TypeName="GiteHouseModel.Messagerie">
               <MappingFragment StoreEntitySet="Messagerie">
                 <ScalarProperty Name="IdMessagerie" ColumnName="IdMessagerie" />
-                <ScalarProperty Name="IdProprietaire" ColumnName="IdProprietaire" />
+                <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Titre" ColumnName="Titre" />
@@ -1769,7 +1808,7 @@
             <EntityTypeMapping TypeName="GiteHouseModel.Prestation">
               <MappingFragment StoreEntitySet="Prestation">
                 <ScalarProperty Name="IdPrestation" ColumnName="IdPrestation" />
-                <ScalarProperty Name="IdProprietaire" ColumnName="IdProprietaire" />
+                <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Prix" ColumnName="Prix" />
               </MappingFragment>
@@ -1783,11 +1822,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="regions1">
+            <EntityTypeMapping TypeName="GiteHouseModel.region1">
+              <MappingFragment StoreEntitySet="regions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Reservations">
             <EntityTypeMapping TypeName="GiteHouseModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
                 <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
-                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
                 <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
                 <ScalarProperty Name="DateFin" ColumnName="DateFin" />
@@ -1800,22 +1847,11 @@
             <EntityTypeMapping TypeName="GiteHouseModel.Saison">
               <MappingFragment StoreEntitySet="Saison">
                 <ScalarProperty Name="IdSaison" ColumnName="IdSaison" />
-                <ScalarProperty Name="IdProprietaire" ColumnName="IdProprietaire" />
+                <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
                 <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
                 <ScalarProperty Name="DateFin" ColumnName="DateFin" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="PrixNuit" ColumnName="PrixNuit" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="GiteHouseModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1853,6 +1889,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateurs">
+            <EntityTypeMapping TypeName="GiteHouseModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
+                <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
+                <ScalarProperty Name="IdAdresse" ColumnName="IdAdresse" />
+                <ScalarProperty Name="Hote" ColumnName="Hote" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Villes">
             <EntityTypeMapping TypeName="GiteHouseModel.Ville">
               <MappingFragment StoreEntitySet="Ville">
@@ -1860,6 +1913,18 @@
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="villes1">
+            <EntityTypeMapping TypeName="GiteHouseModel.ville1">
+              <MappingFragment StoreEntitySet="villes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="departement_id" ColumnName="departement_id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="codepostal" ColumnName="codepostal" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1871,17 +1936,17 @@
               <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="AdresseUtilisateur" TypeName="GiteHouseModel.AdresseUtilisateur" StoreEntitySet="AdresseUtilisateur">
+            <EndProperty Name="Adresse">
+              <ScalarProperty Name="IdAdresse" ColumnName="IdAdresse" />
+            </EndProperty>
+            <EndProperty Name="Utilisateur">
+              <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="HebergementAvi" TypeName="GiteHouseModel.HebergementAvi" StoreEntitySet="HebergementAvi">
             <EndProperty Name="Avi">
               <ScalarProperty Name="IdAvi" ColumnName="IdAvi" />
-            </EndProperty>
-            <EndProperty Name="Hebergement">
-              <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="HebergementClient" TypeName="GiteHouseModel.HebergementClient" StoreEntitySet="HebergementClient">
-            <EndProperty Name="Client">
-              <ScalarProperty Name="IdClient" ColumnName="IdClient" />
             </EndProperty>
             <EndProperty Name="Hebergement">
               <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
@@ -1901,6 +1966,14 @@
             </EndProperty>
             <EndProperty Name="MoyenPaiement">
               <ScalarProperty Name="IdMoyenPaiement" ColumnName="IdMoyenPaiement" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="HebergementUtilisateur" TypeName="GiteHouseModel.HebergementUtilisateur" StoreEntitySet="HebergementUtilisateur">
+            <EndProperty Name="Hebergement">
+              <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
+            </EndProperty>
+            <EndProperty Name="Utilisateur">
+              <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ReservationMoyenPaiement" TypeName="GiteHouseModel.ReservationMoyenPaiement" StoreEntitySet="ReservationMoyenPaiement">

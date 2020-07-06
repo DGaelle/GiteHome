@@ -21,15 +21,15 @@ namespace GiteHouse
         }
     
         public int IdReservation { get; set; }
-        public int IdClient { get; set; }
+        public int IdUtilisateur { get; set; }
         public int IdHebergement { get; set; }
         public Nullable<System.DateTime> DateDebut { get; set; }
         public Nullable<System.DateTime> DateFin { get; set; }
         public string Message { get; set; }
         public Nullable<decimal> Prix { get; set; }
     
-        public virtual Client Client { get; set; }
         public virtual Hebergement Hebergement { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MoyenPaiement> MoyenPaiements { get; set; }
     }

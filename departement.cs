@@ -12,24 +12,20 @@ namespace GiteHouse
     using System;
     using System.Collections.Generic;
     
-    public partial class Avi
+    public partial class departement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Avi()
+        public departement()
         {
-            this.Hebergements = new HashSet<Hebergement>();
+            this.villes = new HashSet<ville1>();
         }
     
-        public int IdAvi { get; set; }
-        public int IdUtilisateur { get; set; }
-        public int IdHebergement { get; set; }
-        public int Note { get; set; }
-        public string Commentaire { get; set; }
-        public System.DateTime Date { get; set; }
-        public string Reponse { get; set; }
+        public string id { get; set; }
+        public int region_id { get; set; }
+        public string nom { get; set; }
     
-        public virtual Utilisateur Utilisateur { get; set; }
+        public virtual region1 region { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hebergement> Hebergements { get; set; }
+        public virtual ICollection<ville1> villes { get; set; }
     }
 }

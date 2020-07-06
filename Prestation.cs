@@ -15,7 +15,7 @@ namespace GiteHouse
     public partial class Prestation
     {
         public int IdPrestation { get; set; }
-        public int IdProprietaire { get; set; }
+        public int IdUtilisateur { get; set; }
         public string Nom { get; set; }
         public Nullable<decimal> Prix { get; set; }
     }

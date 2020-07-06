@@ -13,10 +13,10 @@ namespace GiteHouse
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GiteHouseEntities1 : DbContext
+    public partial class GiteHouseEntities : DbContext
     {
-        public GiteHouseEntities1()
-            : base("name=GiteHouseEntities1")
+        public GiteHouseEntities()
+            : base("name=GiteHouseEntities")
         {
         }
     
@@ -30,25 +30,26 @@ namespace GiteHouse
         public virtual DbSet<Adresse> Adresses { get; set; }
         public virtual DbSet<AppointmentDiary> AppointmentDiaries { get; set; }
         public virtual DbSet<Avi> Avis { get; set; }
-        public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Conversation> Conversations { get; set; }
+        public virtual DbSet<departement> departements { get; set; }
         public virtual DbSet<Equipement> Equipements { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Hebergement> Hebergements { get; set; }
-        public virtual DbSet<Hote> Hotes { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Messagerie> Messageries { get; set; }
         public virtual DbSet<MoyenPaiement> MoyenPaiements { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Prestation> Prestations { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<region1> regions1 { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Saison> Saisons { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tarification> Tarifications { get; set; }
         public virtual DbSet<Theme> Themes { get; set; }
         public virtual DbSet<TypeHebergement> TypeHebergements { get; set; }
         public virtual DbSet<TypeSejour> TypeSejours { get; set; }
+        public virtual DbSet<Utilisateur> Utilisateurs { get; set; }
         public virtual DbSet<Ville> Villes { get; set; }
+        public virtual DbSet<ville1> villes1 { get; set; }
     }
 }

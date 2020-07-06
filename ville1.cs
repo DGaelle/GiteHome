@@ -12,16 +12,15 @@ namespace GiteHouse
     using System;
     using System.Collections.Generic;
     
-    public partial class Messagerie
+    public partial class ville1
     {
-        public int IdMessagerie { get; set; }
-        public int IdUtilisateur { get; set; }
-        public int IdHebergement { get; set; }
-        public string Email { get; set; }
-        public string Titre { get; set; }
-        public string Texte { get; set; }
+        public int id { get; set; }
+        public string departement_id { get; set; }
+        public string nom { get; set; }
+        public string codepostal { get; set; }
+        public double longitude { get; set; }
+        public double latitude { get; set; }
     
-        public virtual Hebergement Hebergement { get; set; }
-        public virtual Utilisateur Utilisateur { get; set; }
+        public virtual departement departement { get; set; }
     }
 }

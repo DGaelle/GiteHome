@@ -22,6 +22,7 @@ namespace GiteHouse
     
         public int IdActivite { get; set; }
         public string Nom { get; set; }
+        public bool IsSelected { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hebergement> Hebergements { get; set; }

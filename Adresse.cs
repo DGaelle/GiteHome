@@ -17,8 +17,8 @@ namespace GiteHouse
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Adresse()
         {
-            this.Clients = new HashSet<Client>();
             this.Hebergements = new HashSet<Hebergement>();
+            this.Utilisateurs = new HashSet<Utilisateur>();
         }
     
         public int IdAdresse { get; set; }
@@ -28,8 +28,8 @@ namespace GiteHouse
         public string Ville { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Clients { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hebergement> Hebergements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Utilisateur> Utilisateurs { get; set; }
     }
 }

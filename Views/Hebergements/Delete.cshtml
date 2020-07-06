@@ -1,0 +1,152 @@
+﻿@model GiteHouse.Hebergement
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Hebergement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ordre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ordre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionCourte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionCourte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionLongue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionLongue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surface)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surface)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombrePiece)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombrePiece)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreChambre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreChambre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Animaux)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Animaux)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouleurReservation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouleurReservation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixBase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixBase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Label.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Label.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proprietaire.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proprietaire.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeHebergement.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeHebergement.Nom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,146 @@
+﻿@model GiteHouse.Hebergement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Hebergement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ordre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ordre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionCourte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionCourte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionLongue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionLongue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surface)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surface)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombrePiece)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombrePiece)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreChambre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreChambre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Animaux)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Animaux)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouleurReservation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouleurReservation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixBase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixBase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Label.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Label.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proprietaire.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proprietaire.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeHebergement.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeHebergement.Nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdHebergement }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

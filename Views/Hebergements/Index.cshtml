@@ -1,0 +1,123 @@
+﻿@model IEnumerable<GiteHouse.Hebergement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ordre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionCourte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionLongue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surface)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombrePiece)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreChambre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Animaux)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CouleurReservation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixBase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresse.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Label.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proprietaire.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeHebergement.Nom)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ordre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionCourte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionLongue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surface)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombrePiece)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreChambre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Animaux)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CouleurReservation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixBase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresse.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Label.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proprietaire.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeHebergement.Nom)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdHebergement }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdHebergement }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdHebergement })
+        </td>
+    </tr>
+}
+
+</table>

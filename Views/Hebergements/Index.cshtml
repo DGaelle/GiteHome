@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ordre)
+            @Html.DisplayNameFor(model => model.IdVille)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nom)
@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Surface)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NombrePiece)
+            @Html.DisplayNameFor(model => model.NombreLits)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.NombreChambre)
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.Animaux)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CouleurReservation)
+            @Html.DisplayNameFor(model => model.Fumeur)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PrixBase)
@@ -48,13 +48,7 @@
             @Html.DisplayNameFor(model => model.Adresse.Nom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Destination.Nom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Label.Nom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proprietaire.Nom)
+            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TypeHebergement.Nom)
@@ -65,7 +59,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Ordre)
+            @Html.DisplayFor(modelItem => item.IdVille)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nom)
@@ -80,7 +74,7 @@
             @Html.DisplayFor(modelItem => item.Surface)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NombrePiece)
+            @Html.DisplayFor(modelItem => item.NombreLits)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NombreChambre)
@@ -89,7 +83,7 @@
             @Html.DisplayFor(modelItem => item.Animaux)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CouleurReservation)
+            @Html.DisplayFor(modelItem => item.Fumeur)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PrixBase)
@@ -101,13 +95,7 @@
             @Html.DisplayFor(modelItem => item.Adresse.Nom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Destination.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Label.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Proprietaire.Nom)
+            @Html.DisplayFor(modelItem => item.Utilisateur.Nom)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TypeHebergement.Nom)

@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a3021506cfdb497ba1bd6fe7c19a07d6" Name="Diagram1">
+      <Diagram DiagramId="44e7560aeb0549819a50dc282b71bdec" Name="Diagram1">
         <EntityTypeShape EntityType="GiteHouseModel.Activite" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.Administrateur" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Adresse" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Adresse" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.AppointmentDiary" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.Avi" Width="1.5" PointX="12.5" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.Conversation" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />

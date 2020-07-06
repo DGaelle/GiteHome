@@ -35,13 +35,13 @@ namespace GiteHouse
         public int IdTypeHebergement { get; set; }
         public int IdUtilisateur { get; set; }
         public int IdAdresse { get; set; }
-        public Nullable<int> IdVille { get; set; }
+        public int IdVille { get; set; }
         public string Nom { get; set; }
         public string DescriptionCourte { get; set; }
         public string DescriptionLongue { get; set; }
         public Nullable<int> Surface { get; set; }
         public Nullable<int> NombreLits { get; set; }
-        public Nullable<int> NombreChambre { get; set; }
+        public Nullable<int> NombreChambres { get; set; }
         public Nullable<bool> Animaux { get; set; }
         public Nullable<bool> Fumeur { get; set; }
         public Nullable<decimal> PrixBase { get; set; }

@@ -36,8 +36,7 @@
           <Property Name="IdAdresse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" />
           <Property Name="Adresse" Type="varchar" MaxLength="200" />
-          <Property Name="CodePostal" Type="varchar" MaxLength="5" />
-          <Property Name="Ville" Type="varchar" MaxLength="50" />
+          <Property Name="IdVille" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="AdresseUtilisateur">
           <Key>
@@ -111,13 +110,13 @@
           <Property Name="IdTypeHebergement" Type="int" Nullable="false" />
           <Property Name="IdUtilisateur" Type="int" Nullable="false" />
           <Property Name="IdAdresse" Type="int" Nullable="false" />
-          <Property Name="IdVille" Type="int" />
+          <Property Name="IdVille" Type="int" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" />
           <Property Name="DescriptionCourte" Type="varchar" MaxLength="100" />
           <Property Name="DescriptionLongue" Type="varchar" MaxLength="300" />
           <Property Name="Surface" Type="int" />
           <Property Name="NombreLits" Type="int" />
-          <Property Name="NombreChambre" Type="int" />
+          <Property Name="NombreChambres" Type="int" />
           <Property Name="Animaux" Type="bit" />
           <Property Name="Fumeur" Type="bit" />
           <Property Name="PrixBase" Type="decimal" Precision="10" Scale="2" />
@@ -954,8 +953,7 @@
           <Property Name="IdAdresse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Adresse1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="CodePostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdVille" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Hebergements" Relationship="Self.FK_Hebergement_Adresse" FromRole="Adresse" ToRole="Hebergement" />
           <NavigationProperty Name="Utilisateurs" Relationship="Self.AdresseUtilisateur" FromRole="Adresse" ToRole="Utilisateur" />
         </EntityType>
@@ -1031,13 +1029,13 @@
           <Property Name="IdTypeHebergement" Type="Int32" Nullable="false" />
           <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
           <Property Name="IdAdresse" Type="Int32" Nullable="false" />
-          <Property Name="IdVille" Type="Int32" />
+          <Property Name="IdVille" Type="Int32" Nullable="false" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DescriptionCourte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DescriptionLongue" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Surface" Type="Int32" />
           <Property Name="NombreLits" Type="Int32" />
-          <Property Name="NombreChambre" Type="Int32" />
+          <Property Name="NombreChambres" Type="Int32" />
           <Property Name="Animaux" Type="Boolean" />
           <Property Name="Fumeur" Type="Boolean" />
           <Property Name="PrixBase" Type="Decimal" Precision="10" Scale="2" />
@@ -1670,8 +1668,7 @@
                 <ScalarProperty Name="IdAdresse" ColumnName="IdAdresse" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Adresse1" ColumnName="Adresse" />
-                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
-                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="IdVille" ColumnName="IdVille" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1750,7 +1747,7 @@
                 <ScalarProperty Name="DescriptionLongue" ColumnName="DescriptionLongue" />
                 <ScalarProperty Name="Surface" ColumnName="Surface" />
                 <ScalarProperty Name="NombreLits" ColumnName="NombreLits" />
-                <ScalarProperty Name="NombreChambre" ColumnName="NombreChambre" />
+                <ScalarProperty Name="NombreChambres" ColumnName="NombreChambres" />
                 <ScalarProperty Name="Animaux" ColumnName="Animaux" />
                 <ScalarProperty Name="Fumeur" ColumnName="Fumeur" />
                 <ScalarProperty Name="PrixBase" ColumnName="PrixBase" />

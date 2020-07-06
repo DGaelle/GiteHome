@@ -18,8 +18,6 @@ namespace GiteHouse
         public int IdHebergement { get; set; }
         public int IdSaison { get; set; }
         public decimal PrixNuit { get; set; }
-        public decimal PrixSemaine { get; set; }
-        public decimal PrixCure { get; set; }
     
         public virtual Hebergement Hebergement { get; set; }
         public virtual Saison Saison { get; set; }

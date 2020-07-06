@@ -22,38 +22,35 @@ namespace GiteHouse
             this.Photos = new HashSet<Photo>();
             this.Reservations = new HashSet<Reservation>();
             this.Tarifications = new HashSet<Tarification>();
+            this.Villes = new HashSet<Ville>();
+            this.Activites = new HashSet<Activite>();
             this.Avis = new HashSet<Avi>();
-            this.Equipements = new HashSet<Equipement>();
-            this.Fournitures = new HashSet<Fourniture>();
             this.Clients = new HashSet<Client>();
+            this.Equipements = new HashSet<Equipement>();
             this.MoyenPaiements = new HashSet<MoyenPaiement>();
             this.Themes = new HashSet<Theme>();
         }
     
         public int IdHebergement { get; set; }
         public int IdTypeHebergement { get; set; }
-        public int IdDestination { get; set; }
         public int IdProprietaire { get; set; }
-        public Nullable<int> IdLabel { get; set; }
         public int IdAdresse { get; set; }
-        public Nullable<int> Ordre { get; set; }
         public string Nom { get; set; }
         public string DescriptionCourte { get; set; }
         public string DescriptionLongue { get; set; }
         public Nullable<int> Surface { get; set; }
-        public Nullable<int> NombrePiece { get; set; }
+        public Nullable<int> NombreLits { get; set; }
         public Nullable<int> NombreChambre { get; set; }
         public Nullable<bool> Animaux { get; set; }
-        public string CouleurReservation { get; set; }
+        public Nullable<bool> Fumeur { get; set; }
         public Nullable<decimal> PrixBase { get; set; }
         public Nullable<bool> Statut { get; set; }
+        public Nullable<int> IdVille { get; set; }
     
         public virtual Adresse Adresse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conversation> Conversations { get; set; }
-        public virtual Destination Destination { get; set; }
-        public virtual Label Label { get; set; }
-        public virtual Proprietaire Proprietaire { get; set; }
+        public virtual Hote Hote { get; set; }
         public virtual TypeHebergement TypeHebergement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Messagerie> Messageries { get; set; }
@@ -64,13 +61,15 @@ namespace GiteHouse
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tarification> Tarifications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ville> Villes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activite> Activites { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Avi> Avis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipement> Equipements { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Fourniture> Fournitures { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Clients { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipement> Equipements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MoyenPaiement> MoyenPaiements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -17,13 +17,13 @@ namespace GiteHouse
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Region()
         {
-            this.VilleCures = new HashSet<VilleCure>();
+            this.Villes = new HashSet<Ville>();
         }
     
         public int IdRegion { get; set; }
         public string Nom { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VilleCure> VilleCures { get; set; }
+        public virtual ICollection<Ville> Villes { get; set; }
     }
 }

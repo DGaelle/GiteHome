@@ -14,10 +14,16 @@ namespace GiteHouse
     
     public partial class Activite
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Activite()
+        {
+            this.Hebergements = new HashSet<Hebergement>();
+        }
+    
         public int IdActivite { get; set; }
-        public Nullable<int> IdTheme { get; set; }
         public string Nom { get; set; }
     
-        public virtual Theme Theme { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hebergement> Hebergements { get; set; }
     }
 }

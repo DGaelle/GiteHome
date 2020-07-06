@@ -22,6 +22,6 @@ namespace GiteHouse
         public string Texte { get; set; }
     
         public virtual Hebergement Hebergement { get; set; }
-        public virtual Proprietaire Proprietaire { get; set; }
+        public virtual Hote Hote { get; set; }
     }
 }

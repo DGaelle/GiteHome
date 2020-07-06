@@ -18,7 +18,7 @@ namespace GiteHouse
         public Genre()
         {
             this.Clients = new HashSet<Client>();
-            this.Proprietaires = new HashSet<Proprietaire>();
+            this.Hotes = new HashSet<Hote>();
         }
     
         public int IdGenre { get; set; }
@@ -27,6 +27,6 @@ namespace GiteHouse
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Client> Clients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proprietaire> Proprietaires { get; set; }
+        public virtual ICollection<Hote> Hotes { get; set; }
     }
 }

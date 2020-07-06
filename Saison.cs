@@ -25,9 +25,9 @@ namespace GiteHouse
         public System.DateTime DateDebut { get; set; }
         public System.DateTime DateFin { get; set; }
         public string Nom { get; set; }
-        public decimal Prix { get; set; }
+        public decimal PrixNuit { get; set; }
     
-        public virtual Proprietaire Proprietaire { get; set; }
+        public virtual Hote Hote { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tarification> Tarifications { get; set; }
     }

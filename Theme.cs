@@ -17,15 +17,12 @@ namespace GiteHouse
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Theme()
         {
-            this.Activites = new HashSet<Activite>();
             this.Hebergements = new HashSet<Hebergement>();
         }
     
         public int IdTheme { get; set; }
         public string Nom { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Activite> Activites { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hebergement> Hebergements { get; set; }
     }

@@ -23,9 +23,9 @@ namespace GiteHouse
         public int IdAvi { get; set; }
         public int IdClient { get; set; }
         public int IdHebergement { get; set; }
-        public Nullable<int> Note { get; set; }
+        public int Note { get; set; }
         public string Commentaire { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public System.DateTime Date { get; set; }
         public string Reponse { get; set; }
     
         public virtual Client Client { get; set; }

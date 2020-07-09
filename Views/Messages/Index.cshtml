@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GiteHouse.Message>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdExpediteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdDestinataire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Texte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsLu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conversation.Titre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdExpediteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdDestinataire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Texte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsLu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conversation.Titre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdMessage }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdMessage }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdMessage })
+        </td>
+    </tr>
+}
+
+</table>

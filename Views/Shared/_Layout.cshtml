@@ -46,17 +46,19 @@
         <a class="nav-link" href="#">Nouvelle Annonce <span class="sr-only">(current)</span></a>*@
                 <li>@Html.ActionLink("Nouvelle Annonce", "Create", "Hebergements")</li>
                 @*  </li>*@
-                <li class="nav-item">
+                @*<li class="nav-item">
                     <a class="nav-link" href="#">Messagerie</a>
-                </li>
+                </li>*@
+
+                <li>@Html.ActionLink("Messagerie", "Index", "Messages")</li>
                 @*<li class="nav-item">
             <a class="nav-link" href="#">Mes chambres d'hôte</a>
         </li>*@
                 <li>@Html.ActionLink("Mes chambres d'hôte", "Index", "Home")</li>
 
                 @*<li class="nav-item">
-                    <a class="nav-link" href="#">Mes avis</a>
-                </li>*@
+            <a class="nav-link" href="#">Mes avis</a>
+        </li>*@
                 <li>@Html.ActionLink("Mes avis", "Index", "Utilisateurs")</li>
 
             </ul>
@@ -72,9 +74,9 @@
                             <img src="..." width="40" height="40" class="rounded-circle"> Mon compte
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Mes informations</a>
+                            <a class="dropdown-item" href="#">Mes Informations</a>
                             <a class="dropdown-item" href="#">Mon Profil</a>
-                            <a class="dropdown-item" href="#">Mes paiements</a>
+                            <a class="dropdown-item" href="#">Mes Paiements</a>
                         </div>
                     </li>
                 </ul>

@@ -1,0 +1,66 @@
+﻿@model GiteHouse.Message
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdExpediteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdExpediteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdDestinataire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdDestinataire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Texte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Texte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsLu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsLu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conversation.Titre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conversation.Titre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdMessage }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

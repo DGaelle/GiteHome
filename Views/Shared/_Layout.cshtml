@@ -4,13 +4,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    <title>@ViewBag.Title - GiteHouse</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/fullcalendar/css")
+    @Styles.Render("~/fontawesome/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,7 +29,58 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>*@
+
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm mt-auto">
+        <a class="navbar-brand" href="#">
+            <img src="..." width="30" height="30" alt="logo">
+            GiteHouse
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-8" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbar-list-8">
+            <ul class="navbar-nav">
+                @*<li class="nav-item active">
+        <a class="nav-link" href="#">Nouvelle Annonce <span class="sr-only">(current)</span></a>*@
+                <li>@Html.ActionLink("Nouvelle Annonce", "Create", "Hebergements")</li>
+                @*  </li>*@
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Messagerie</a>
+                </li>
+                @*<li class="nav-item">
+            <a class="nav-link" href="#">Mes chambres d'hôte</a>
+        </li>*@
+                <li>@Html.ActionLink("Mes chambres d'hôte", "Index", "Home")</li>
+
+                @*<li class="nav-item">
+                    <a class="nav-link" href="#">Mes avis</a>
+                </li>*@
+                <li>@Html.ActionLink("Mes avis", "Index", "Utilisateurs")</li>
+
+            </ul>
+
+            <div class="right-side d-flex">
+                <form class="form-inline">
+                    <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-info" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="..." width="40" height="40" class="rounded-circle"> Mon compte
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Mes informations</a>
+                            <a class="dropdown-item" href="#">Mon Profil</a>
+                            <a class="dropdown-item" href="#">Mes paiements</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -40,6 +92,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendar")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/fontawesome")
     @RenderSection("scripts", required: false)
 </body>
 </html>

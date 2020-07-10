@@ -14,6 +14,28 @@
     background-color:aqua;
 
 }
+body {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+footer {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a:hover {
+    color: mediumaquamarine;
+}
+.logo {
+    border: solid;
+    padding: 4px 7px 2px 4px;
+    border-radius: 7px 7px;
+    border-color: dimgrey;
+    border-style: dotted;
+}
+.nav-item {
+    padding: 4px 7px 2px 4px;
+    color: mediumblue;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */

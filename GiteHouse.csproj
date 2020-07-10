@@ -149,6 +149,7 @@
     <Compile Include="Controllers\HebergementsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\TarificationsController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Conversation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -419,9 +420,15 @@
     <Content Include="Views\Messages\Details.cshtml" />
     <Content Include="Views\Messages\Edit.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Tarifications\Create.cshtml" />
+    <Content Include="Views\Tarifications\Delete.cshtml" />
+    <Content Include="Views\Tarifications\Details.cshtml" />
+    <Content Include="Views\Tarifications\Edit.cshtml" />
+    <Content Include="Views\Tarifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

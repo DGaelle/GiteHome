@@ -11,23 +11,32 @@
 .navbar {
     font-size: large;
     font-style: normal;
-    background-color:aqua;
-
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.navbar-brand {
+    color: darkmagenta;
 }
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-image: url('../images/bg2.jpg');
+    background-image: url('../images/bg3.jpg');
+    background-size: cover;
     background-attachment: fixed;
-  
 }
 footer {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     position: fixed;
     bottom: 0;
+    color: white;
 }
 
 a:hover {
-    color: mediumaquamarine;
+    color: cadetblue;
+    background-color: rgba(177, 134, 67, 0.20);
+    text-decoration: none;
+    text-emphasis-color: transparent;
+}
+a:active {
+    color: darkblue;
 }
 .logo {
     border: solid;
@@ -36,9 +45,9 @@ a:hover {
     border-color: dimgrey;
     border-style: dotted;
 }
-.nav-item {
+.nav-item, .dropdown-item, #navbarDropdownMenuLink, .navbar-brand {
     padding: 4px 7px 2px 4px;
-    color: mediumblue;
+    color: darkolivegreen;
 }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

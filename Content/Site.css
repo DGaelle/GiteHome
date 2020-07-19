@@ -1,7 +1,4 @@
-﻿body {
-   /* padding-top: 50px;*/
-    padding-bottom: 20px;
-}
+﻿
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -12,11 +9,15 @@
     font-size: large;
     font-style: normal;
     background-color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 50px;
 }
 .navbar-brand {
-    color: darkmagenta;
+    color: darkorange;
+    font-size: 25px;
+    font-weight: bold;
 }
 body {
+    padding-bottom: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-image: url('../images/bg3.jpg');
     background-size: cover;
@@ -36,18 +37,32 @@ a:hover {
     text-emphasis-color: transparent;
 }
 a:active {
-    color: darkblue;
+    color: gold;
 }
 .logo {
-    border: solid;
+  
     padding: 4px 7px 2px 4px;
     border-radius: 7px 7px;
     border-color: dimgrey;
-    border-style: dotted;
 }
-.nav-item, .dropdown-item, #navbarDropdownMenuLink, .navbar-brand {
+.nav-item, .dropdown-item, #navbarDropdownMenuLink {
     padding: 4px 7px 2px 4px;
-    color: darkolivegreen;
+    color: darkgreen;
+}
+h2, h4 {
+    color: black;
+    text-align: center;
+}
+.card {
+    background-color: white;
+    background-attachment: initial;
+    max-width: 100rem;
+    min-width: 30rem;
+    max-height: 100rem;
+    min-height: 50rem;
+}
+.card:hover{
+
 }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -62,3 +77,53 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*.vertical-nav {
+    min-width: 17rem;
+    width: 17rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.page-content {
+    width: calc(100% - 17rem);
+    margin-left: 17rem;
+    transition: all 0.4s;
+}*/
+
+/* for toggle behavior */
+
+/*#sidebar.active {
+    margin-left: -17rem;
+}
+
+#content.active {
+    width: 100%;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -17rem;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+
+    #content {
+        width: 100%;
+        margin: 0;
+    }
+
+        #content.active {
+            margin-left: 17rem;
+            width: calc(100% - 17rem);
+        }
+}*/
+
+

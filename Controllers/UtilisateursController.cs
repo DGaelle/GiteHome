@@ -21,6 +21,38 @@ namespace GiteHouse.Controllers
             return View(utilisateurs.ToList());
         }
 
+        // GET: Utilisateurs
+        public ActionResult Connexion()
+        {
+            var utilisateurs = db.Utilisateurs.Include(u => u.Genre);
+            return View(utilisateurs.ToList());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Connexion([Bind(Include = "Login,Password")] Utilisateur utilisateur, FormCollection formCollection)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Utilisateur user = db.Utilisateurs.FirstOrDefault(u => u.Login == utilisateur.Login
+                 && u.Password == utilisateur.Password);
+
+                if (user != null)
+                {
+                    user.IdSession = Session.SessionID;
+                    db.SaveChanges();
+
+                    Session["Utilisateur"] = user;
+                    return RedirectToAction("Compte", "Utilisateurs");
+                }
+                else
+                {
+                    ViewBag.Erreur = "Erreur d'authentification";
+                }
+            }
+
+            return View();
+        }
         // GET: Utilisateurs/Details/5
         public ActionResult Details(int? id)
         {

@@ -1,0 +1,59 @@
+﻿@model GiteHouse.Saison
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Hebergements/Create.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Saison</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixNuit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixNuit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdSaison }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

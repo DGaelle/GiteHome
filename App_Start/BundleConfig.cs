@@ -9,7 +9,8 @@ namespace GiteHouse
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-3.5.1.js",
+                        "~/Scripts/jquery-3.5.1.slim.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -21,6 +22,8 @@ namespace GiteHouse
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.min.css",
+                      "~/Scripts/bootstrap.bundle.min.js",
                       "~/Scripts/bootstrap-notify.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/SiteScripts").Include(
@@ -34,7 +37,8 @@ namespace GiteHouse
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/fontawesome-all.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/font-awesome.min.css",
                       "~/Content/site.css",
                       "~/Content/animate.min.css",
                      "~/DataTables/datatables.min.css"));

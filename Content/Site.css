@@ -65,12 +65,10 @@ h2, h4 {
     border-color: darkslategrey;
     border-width:4px;
     background-attachment: initial;
-
-    
-   /* max-width: 100rem;
-    min-width: 30rem;
+    max-width: 100rem;
+    min-width: 20rem;
     max-height: 100rem;
-    min-height: 50rem;*/
+    min-height: 30rem;
 }
 .card-title {
     text-align: center;

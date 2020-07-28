@@ -7,12 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GiteHouse;
+using GiteHouse.Core;
+using GiteHouse.PersistenceInDBSqlServer;
 
 namespace GiteHouse.Controllers
 {
     public class HebergementsController : Controller
     {
         private GiteHouseEntities db = new GiteHouseEntities();
+        private IUnitOfWork _unitOfWork;
+
+        public HebergementsController()
+        {
+            _unitOfWork = new UnitOfWork(db);
+        }
 
         // GET: Hebergements
         public ActionResult Index()
@@ -39,10 +47,31 @@ namespace GiteHouse.Controllers
         // GET: Hebergements/Create
         public ActionResult Create()
         {
+            var regions = _unitOfWork.Regions.GetAll();
+
+            //return View(regions);
+
+            var hebergements = db.Hebergements.Include(h => h.Adresse).Include(h => h.Utilisateur).Include(h => h.IdRegion);
             ViewBag.IdAdresse = new SelectList(db.Adresses, "IdAdresse", "Nom");
+            ViewBag.IdRegion = new SelectList(regions, "IdRegion", "Nom"); //new SelectList(db.Regions, "IdRegion", "Nom");
+            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom");
+            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "Nom");
             ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom");
             ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom");
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetRegions(string iso3)
+        {
+            if (!string.IsNullOrWhiteSpace(iso3) && iso3.Length == 3)
+            {
+                //var repo = new RegionsRepository();
+                var regions = _unitOfWork.Regions.GetAll();
+                //IEnumerable<SelectListItem> regions = repo.GetRegions(iso3);
+                return Json(regions, JsonRequestBehavior.AllowGet);
+            }
+            return null;
         }
 
         // POST: Hebergements/Create
@@ -51,6 +80,40 @@ namespace GiteHouse.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdHebergement,IdTypeHebergement,IdUtilisateur,IdAdresse,IdVille,Nom,DescriptionCourte,DescriptionLongue,Surface,NombreLits,NombreChambre,Animaux,Fumeur,PrixBase,Statut")] Hebergement hebergement)
+        {
+            ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom");
+            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom");
+            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "Nom");
+
+
+            return View();
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.Hebergements.Add(hebergement);
+            //    db.SaveChanges();
+            //    return RedirectToAction("CreateImage");
+            //}
+
+            //ViewBag.IdAdresse = new SelectList(db.Adresses, "IdAdresse", "Nom", hebergement.IdAdresse);
+            //ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", hebergement.IdUtilisateur);
+            //ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom", hebergement.IdTypeHebergement);
+            //return View("CreateImage");
+        }
+
+        // GET: Hebergements/Create
+        public ActionResult CreateImage()
+        {
+            ViewBag.IdAdresse = new SelectList(db.Adresses, "IdAdresse", "Nom");
+            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom");
+            ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateImage([Bind(Include = "IdPhoto, Nom, IdHebergement, IsDefault, NomAleatoire")] Hebergement hebergement)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +127,7 @@ namespace GiteHouse.Controllers
             ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom", hebergement.IdTypeHebergement);
             return View(hebergement);
         }
+
 
         // GET: Hebergements/Edit/5
         public ActionResult Edit(int? id)

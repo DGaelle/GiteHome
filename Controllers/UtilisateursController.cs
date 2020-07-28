@@ -14,36 +14,30 @@ namespace GiteHouse.Controllers
     {
         private GiteHouseEntities db = new GiteHouseEntities();
 
-        // GET: Utilisateurs
-        public ActionResult Index()
-        {
-            var utilisateurs = db.Utilisateurs.Include(u => u.Genre);
-            return View(utilisateurs.ToList());
-        }
-
+     
         // GET: Utilisateurs
         public ActionResult Connexion()
         {
-            var utilisateurs = db.Utilisateurs.Include(u => u.Genre);
-            return View(utilisateurs.ToList());
+         
+            return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Connexion([Bind(Include = "Login,Password")] Utilisateur utilisateur, FormCollection formCollection)
+        public ActionResult Connexion([Bind(Include = "Login,Password")] Utilisateur utilisateur)
         {
             if (ModelState.IsValid)
             {
 
-                Utilisateur user = db.Utilisateurs.FirstOrDefault(u => u.Login == utilisateur.Login
+                var user = db.Utilisateurs.FirstOrDefault(u => u.Login == utilisateur.Login
                  && u.Password == utilisateur.Password);
 
                 if (user != null)
                 {
-                    user.IdSession = Session.SessionID;
-                    db.SaveChanges();
 
                     Session["Utilisateur"] = user;
-                    return RedirectToAction("Compte", "Utilisateurs");
+
+                    return RedirectToAction("Compte", "Utilisateurs", new { id = user.IdUtilisateur });
                 }
                 else
                 {
@@ -53,6 +47,20 @@ namespace GiteHouse.Controllers
 
             return View();
         }
+        public ActionResult Deconnexion()
+        {
+            Session["Utilisateur"] = null;
+
+            return RedirectToAction("Connexion", "Utilisateurs");
+
+        }
+
+        public ActionResult Compte()
+        {
+           
+            return View();
+        }
+
         // GET: Utilisateurs/Details/5
         public ActionResult Details(int? id)
         {

@@ -4,15 +4,18 @@
 .body-content {
     padding-left: 30px;
     padding-right: 30px;
+    width: auto;
+    height: auto;
 }
 .navbar {
+   
     font-size: large;
     font-style: normal;
     background-color: rgba(255, 255, 255, 0.5);
     margin-bottom: 50px;
 }
 .navbar-brand {
-    color: darkorange;
+    color: darkmagenta;
     font-size: 25px;
     font-weight: bold;
 }
@@ -37,7 +40,7 @@ a:hover {
     text-emphasis-color: transparent;
 }
 a:active {
-    color: gold;
+    color: darkmagenta;
 }
 .logo {
   
@@ -45,24 +48,36 @@ a:active {
     border-radius: 7px 7px;
     border-color: dimgrey;
 }
-.nav-item, .dropdown-item, #navbarDropdownMenuLink {
+.dropdown-item {
+    background-color: transparent;
+    color: darkslategrey;
+}
+.nav-item, #navbarDropdownMenuLink {
+    margin: 4px 10px 4px 10px;
     padding: 4px 7px 2px 4px;
-    color: darkgreen;
+    color: darkslategrey;
 }
 h2, h4 {
-    color: black;
+    color: darkslategrey;
     text-align: center;
 }
 .card {
-    background-color: white;
+    border-color: darkslategrey;
+    border-width:4px;
     background-attachment: initial;
-    max-width: 100rem;
+
+    
+   /* max-width: 100rem;
     min-width: 30rem;
     max-height: 100rem;
-    min-height: 50rem;
+    min-height: 50rem;*/
 }
-.card:hover{
-
+.card-title {
+    text-align: center;
+}
+.card-link{
+    color:white;
+    font-size: x-large;
 }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Connexion";
-    Layout = "~/Views/Hebergements/Create.cshtml";
 }
 
 <h2>Connexion</h2>
@@ -33,10 +32,11 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Valider" class="btn btn-info" />
-
-
+                <input type="submit" value="Valider" class="btn btn-outline-success" />
             </div>
         </div>
     </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -44,6 +44,9 @@ namespace GiteHouse
         public bool Fumeur { get; set; }
         public decimal PrixBase { get; set; }
         public bool Statut { get; set; }
+        public Nullable<int> IdRegion { get; set; }
+        public Nullable<int> IdDepartement { get; set; }
+        public Nullable<int> IdVille { get; set; }
     
         public virtual Adresse Adresse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

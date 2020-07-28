@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GiteHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GiteHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activite">
           <Key>
             <PropertyRef Name="IdActivite" />
@@ -120,6 +120,9 @@
           <Property Name="Fumeur" Type="bit" Nullable="false" />
           <Property Name="PrixBase" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Statut" Type="bit" Nullable="false" />
+          <Property Name="IdRegion" Type="int" />
+          <Property Name="IdDepartement" Type="int" />
+          <Property Name="IdVille" Type="int" />
         </EntityType>
         <EntityType Name="HebergementAvi">
           <Key>
@@ -423,7 +426,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Hebergement_Adresse">
+        <Association Name="FK_Hebergement_Adresse1">
           <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -835,7 +838,7 @@
             <End Role="Region" EntitySet="Region" />
             <End Role="Departement" EntitySet="Departement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Hebergement_Adresse" Association="Self.FK_Hebergement_Adresse">
+          <AssociationSet Name="FK_Hebergement_Adresse1" Association="Self.FK_Hebergement_Adresse1">
             <End Role="Adresse" EntitySet="Adresse" />
             <End Role="Hebergement" EntitySet="Hebergement" />
           </AssociationSet>
@@ -940,8 +943,7 @@
             <End Role="Ville" EntitySet="Ville" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GiteHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1069,6 +1071,9 @@
           <NavigationProperty Name="MoyenPaiements" Relationship="Self.HebergementMoyenPaiement" FromRole="Hebergement" ToRole="MoyenPaiement" />
           <NavigationProperty Name="Utilisateurs" Relationship="Self.HebergementUtilisateur" FromRole="Hebergement" ToRole="Utilisateur" />
           <NavigationProperty Name="Themes" Relationship="Self.ThemeHebergement" FromRole="Hebergement" ToRole="Theme" />
+          <Property Name="IdRegion" Type="Int32" />
+          <Property Name="IdDepartement" Type="Int32" />
+          <Property Name="IdVille" Type="Int32" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -1777,6 +1782,9 @@
           <EntitySetMapping Name="Hebergements">
             <EntityTypeMapping TypeName="GiteHouseModel.Hebergement">
               <MappingFragment StoreEntitySet="Hebergement">
+                <ScalarProperty Name="IdVille" ColumnName="IdVille" />
+                <ScalarProperty Name="IdDepartement" ColumnName="IdDepartement" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
                 <ScalarProperty Name="IdTypeHebergement" ColumnName="IdTypeHebergement" />
                 <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />

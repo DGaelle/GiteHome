@@ -24,7 +24,8 @@ namespace GiteHouse
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootstrap.min.css",
                       "~/Scripts/bootstrap.bundle.min.js",
-                      "~/Scripts/bootstrap-notify.min.js"));
+                      "~/Scripts/bootstrap-notify.min.js",
+                      "~/Scripts/jquery.unobtrusive - ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/SiteScripts").Include(
            "~/Scripts/sweetalert.min.js",

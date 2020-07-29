@@ -51,6 +51,8 @@ namespace GiteHouse
         public virtual Adresse Adresse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conversation> Conversations { get; set; }
+        public virtual Region Region { get; set; }
+        public virtual Ville Ville { get; set; }
         public virtual Utilisateur Utilisateur { get; set; }
         public virtual TypeHebergement TypeHebergement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

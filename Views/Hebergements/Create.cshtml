@@ -17,34 +17,14 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     </div>
-
     <div class="form-group input-group">
         <div class="input-group-prepend">
             <span class="input-group-text" style="width:45px;"><i class="fas fa-user-check"></i></span>
         </div>
-        @Html.DropDownList("IdRegion", null, "-- Région --", htmlAttributes: new { @class = "form-control ", @style = "width: 250px" })
+        @Html.DropDownList("IdTypeHebergement", null, "-- Type d'Hébergement --", htmlAttributes: new { @class = "form-control ", @style = "width: 250px" })
     </div>
     <div class="form-group">
-        @Html.ValidationMessageFor(model => model.IdRegion, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" style="width:45px;"><i class="fas fa-user-check"></i></span>
-        </div>
-        @Html.DropDownList("IdDepartement", null, "-- Département --", htmlAttributes: new { @class = "form-control ", @style = "width: 250px" })
-    </div>
-    <div class="form-group">
-        @Html.ValidationMessageFor(model => model.IdDepartement, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" style="width:45px"><i class="fas fa-user-check"></i></span>
-        </div>
-        @Html.DropDownList("IdVille", null, "-- Ville --", htmlAttributes: new { @class = "form-control ", @style = "width: 250px" })
-    </div>
-    <div class="form-group">
-        @Html.ValidationMessageFor(model => model.IdVille, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.IdTypeHebergement, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
@@ -124,8 +104,7 @@
 
     <div class="form-group float-sm-right">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-outline-success" />
-            @*<a href="@Url.Action("CreateImage", "Hebergements")" title="Suite" class="btn btn-outline-success"> Suite <i class="fa fa-chevron-circle-right"></i></a>*@
+            <input type="submit" value="Suivant" class="btn btn-outline-success" />
         </div>
     </div>
 

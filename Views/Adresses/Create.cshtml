@@ -1,9 +1,7 @@
-﻿@*@model GiteHouse.Adresse*@
-@model GiteHouse.ViewModels.CreateHebergementViewModel
+﻿@model GiteHouse.Adresse
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Hebergements/Create.cshtml";
 }
 
 <h2>Create</h2>
@@ -13,53 +11,62 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Adresse</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <h4>Adresse</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" style="width:45px;"><i class="fas fa-user-check"></i></span>
         </div>
+        @Html.DropDownList("IdRegion", null, "-- Région --", htmlAttributes: new { @class = "form-control ", @style = "width: 250px" })
+    </div>
+  
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Adresse, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Adresse1, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" style="width:45px;"><i class="fas fa-user-check"></i></span>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdVille, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdVille, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdVille, "", new { @class = "text-danger" })
-            </div>
+        @Html.DropDownList("IdDepartement", null, "-- Département --", htmlAttributes: new { @class = "form-control ", @style = "width: 250px" })
+    </div>
+   
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" style="width:45px"><i class="fas fa-user-check"></i></span>
         </div>
+        @Html.DropDownList("IdVille", null, "-- Ville --", htmlAttributes: new { @class = "form-control ", @style = "width: 250px" })
+    </div>
+    <div class="form-group">
+        @Html.ValidationMessageFor(model => model.IdVille, "", new { @class = "text-danger" })
+    </div>
 
-        <div class="form-group">
-                @Html.LabelFor(x => Model.SelectedRegionCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-5">
-                    @Html.DropDownListFor(x => Model.SelectedRegionCode, new SelectList(Model.Regions, "Value", "Text"), htmlAttributes: new { @class = "form-control", @id = "Region" })
-                    @Html.ValidationMessageFor(x => x.SelectedRegionCode, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Adresse1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Adresse1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Adresse1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Suivant" class="btn btn-outline-success" />
+        </div>
+    </div>
+</div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

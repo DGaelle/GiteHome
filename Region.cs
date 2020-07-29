@@ -18,6 +18,7 @@ namespace GiteHouse
         public Region()
         {
             this.Departements = new HashSet<Departement>();
+            this.Hebergements = new HashSet<Hebergement>();
         }
     
         public int IdRegion { get; set; }
@@ -25,5 +26,7 @@ namespace GiteHouse
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Departement> Departements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hebergement> Hebergements { get; set; }
     }
 }

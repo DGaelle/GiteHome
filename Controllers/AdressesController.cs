@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GiteHouse;
+using GiteHouse.Models;
 
 namespace GiteHouse.Controllers
 {
@@ -38,6 +39,18 @@ namespace GiteHouse.Controllers
         // GET: Adresses/Create
         public ActionResult Create()
         {
+            if (Session["Utilisateur"] != null)
+            {
+                SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+
+                if (sessionUser != null)
+                {
+                    ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom");
+                    ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom");
+                    ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "Nom");
+                }
+
+            }
             return View();
         }
 
@@ -46,12 +59,14 @@ namespace GiteHouse.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdAdresse,Nom,Adresse1,IdVille")] Adresse adresse)
+        public ActionResult Create([Bind(Include = "Nom,Adresse1,IdVille")] Adresse adresse)
         {
             if (ModelState.IsValid)
             {
-                db.Adresses.Add(adresse);
-                db.SaveChanges();
+            
+              //  adresse.
+
+
                 return RedirectToAction("Index");
             }
 

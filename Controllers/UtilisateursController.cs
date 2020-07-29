@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GiteHouse;
+using GiteHouse.Models;
 
 namespace GiteHouse.Controllers
 {
@@ -35,9 +36,11 @@ namespace GiteHouse.Controllers
                 if (user != null)
                 {
 
-                    Session["Utilisateur"] = user;
+                    SessionUser sessionUser= new SessionUser();
+                    sessionUser.User = user;
+                    Session["Utilisateur"] = sessionUser;
 
-                    return RedirectToAction("Compte", "Utilisateurs", new { id = user.IdUtilisateur });
+                    return RedirectToAction("Compte", "Utilisateurs");
                 }
                 else
                 {
@@ -57,8 +60,10 @@ namespace GiteHouse.Controllers
 
         public ActionResult Compte()
         {
-           
-            return View();
+            SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+
+
+            return View(sessionUser.User);
         }
 
         // GET: Utilisateurs/Details/5

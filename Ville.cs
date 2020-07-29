@@ -18,6 +18,7 @@ namespace GiteHouse
         public Ville()
         {
             this.Adresses = new HashSet<Adresse>();
+            this.Hebergements = new HashSet<Hebergement>();
         }
     
         public int IdVille { get; set; }
@@ -30,5 +31,7 @@ namespace GiteHouse
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adresse> Adresses { get; set; }
         public virtual Departement Departement { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hebergement> Hebergements { get; set; }
     }
 }

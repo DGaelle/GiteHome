@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using GiteHouse;
 using GiteHouse.Core;
+using GiteHouse.Models;
 using GiteHouse.PersistenceInDBSqlServer;
 
 namespace GiteHouse.Controllers
@@ -44,23 +45,7 @@ namespace GiteHouse.Controllers
             return View(hebergement);
         }
 
-        // GET: Hebergements/Create
-        public ActionResult Create()
-        {
-            var regions = _unitOfWork.Regions.GetAll();
-
-            //return View(regions);
-
-            var hebergements = db.Hebergements.Include(h => h.Adresse).Include(h => h.Utilisateur).Include(h => h.IdRegion);
-            ViewBag.IdAdresse = new SelectList(db.Adresses, "IdAdresse", "Nom");
-            ViewBag.IdRegion = new SelectList(regions, "IdRegion", "Nom"); //new SelectList(db.Regions, "IdRegion", "Nom");
-            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom");
-            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "Nom");
-            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom");
-            ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom");
-            return View();
-        }
-
+     
         [HttpGet]
         public ActionResult GetRegions(string iso3)
         {
@@ -73,33 +58,39 @@ namespace GiteHouse.Controllers
             }
             return null;
         }
+        // GET: Hebergements/Create
+        public ActionResult Create()
+        {
+         
+            ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom");
+
+            return View();
+        }
 
         // POST: Hebergements/Create
         // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdHebergement,IdTypeHebergement,IdUtilisateur,IdAdresse,IdVille,Nom,DescriptionCourte,DescriptionLongue,Surface,NombreLits,NombreChambre,Animaux,Fumeur,PrixBase,Statut")] Hebergement hebergement)
+        public ActionResult Create([Bind(Include = "IdTypeHebergement,Nom,DescriptionCourte,DescriptionLongue,Surface,NombreLits,NombreChambre,Animaux,Fumeur,PrixBase")] Hebergement hebergement)
         {
-            ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom");
-            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom");
-            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "Nom");
+            
+            if (ModelState.IsValid)
+            {
+                SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+                hebergement.IdUtilisateur = sessionUser.User.IdUtilisateur;
+                sessionUser.Hebergement = hebergement;
 
+                Session["Utilisateur"] = sessionUser;
 
-            return View();
+                return RedirectToAction("Create", "Adresses");
+            }
+            else
+            {
+                ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom", hebergement.IdTypeHebergement);
+                return View();
+            }
 
-
-            //if (ModelState.IsValid)
-            //{
-            //    db.Hebergements.Add(hebergement);
-            //    db.SaveChanges();
-            //    return RedirectToAction("CreateImage");
-            //}
-
-            //ViewBag.IdAdresse = new SelectList(db.Adresses, "IdAdresse", "Nom", hebergement.IdAdresse);
-            //ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", hebergement.IdUtilisateur);
-            //ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom", hebergement.IdTypeHebergement);
-            //return View("CreateImage");
         }
 
         // GET: Hebergements/Create

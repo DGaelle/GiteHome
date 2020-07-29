@@ -1,5 +1,5 @@
 ﻿@{
-    Utilisateur utilisateur = (Utilisateur)Session["Utilisateur"];
+    GiteHouse.Models.SessionUser sessionUser = (GiteHouse.Models.SessionUser)Session["Utilisateur"];
 
 }
 
@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbar-list-8">
             <ul class="navbar-nav">
                 @{
-                    if (utilisateur != null)
+                    if (sessionUser != null && sessionUser.User != null)
 
                     {
                         @Html.Partial("NavConnecte")
@@ -48,10 +48,10 @@
         <div class="card">
             <div class="card-title bg-dark">
                 @{
-                    if (utilisateur != null)
+                    if (sessionUser != null && sessionUser.User != null)
 
                     {
-                                <a class="card-link" href="@Url.Action("Compte", "Utilisateurs")"> Bienvenue @utilisateur.Prenom @utilisateur.Nom </a>
+                                <a class="card-link" href="@Url.Action("Compte", "Utilisateurs")"> Bienvenue @sessionUser.User.Prenom @sessionUser.User.Nom </a>
                     }
                 }
             </div>

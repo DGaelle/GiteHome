@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GiteHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GiteHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activite">
           <Key>
             <PropertyRef Name="IdActivite" />
@@ -37,6 +37,8 @@
           <Property Name="Nom" Type="varchar" MaxLength="50" />
           <Property Name="Adresse" Type="varchar" MaxLength="200" />
           <Property Name="IdVille" Type="int" />
+          <Property Name="IdRegion" Type="int" />
+          <Property Name="IdDepartement" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="AdresseUtilisateur">
           <Key>
@@ -435,6 +437,30 @@
             </Principal>
             <Dependent Role="Hebergement">
               <PropertyRef Name="IdAdresse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hebergement_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="IdRegion" />
+            </Principal>
+            <Dependent Role="Hebergement">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hebergement_Ville">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="0..1" />
+          <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="IdVille" />
+            </Principal>
+            <Dependent Role="Hebergement">
+              <PropertyRef Name="IdVille" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -842,6 +868,14 @@
             <End Role="Adresse" EntitySet="Adresse" />
             <End Role="Hebergement" EntitySet="Hebergement" />
           </AssociationSet>
+          <AssociationSet Name="FK_Hebergement_Region" Association="Self.FK_Hebergement_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Hebergement" EntitySet="Hebergement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hebergement_Ville" Association="Self.FK_Hebergement_Ville">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Hebergement" EntitySet="Hebergement" />
+          </AssociationSet>
           <AssociationSet Name="FK_HebergementAvi_Avi" Association="Self.FK_HebergementAvi_Avi">
             <End Role="Avi" EntitySet="Avi" />
             <End Role="HebergementAvi" EntitySet="HebergementAvi" />
@@ -943,7 +977,8 @@
             <End Role="Ville" EntitySet="Ville" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GiteHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -972,8 +1007,10 @@
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Adresse1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="IdVille" Type="Int32" />
+          <Property Name="IdRegion" Type="Int32" />
+          <Property Name="IdDepartement" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Ville" Relationship="Self.FK_Adresse_Ville" FromRole="Adresse" ToRole="Ville" />
-          <NavigationProperty Name="Hebergements" Relationship="Self.FK_Hebergement_Adresse" FromRole="Adresse" ToRole="Hebergement" />
+          <NavigationProperty Name="Hebergements" Relationship="Self.FK_Hebergement_Adresse1" FromRole="Adresse" ToRole="Hebergement" />
           <NavigationProperty Name="Utilisateurs" Relationship="Self.AdresseUtilisateur" FromRole="Adresse" ToRole="Utilisateur" />
         </EntityType>
         <EntityType Name="AppointmentDiary">
@@ -1057,8 +1094,13 @@
           <Property Name="Fumeur" Type="Boolean" Nullable="false" />
           <Property Name="PrixBase" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Statut" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Adresse" Relationship="Self.FK_Hebergement_Adresse" FromRole="Hebergement" ToRole="Adresse" />
+          <Property Name="IdRegion" Type="Int32" />
+          <Property Name="IdDepartement" Type="Int32" />
+          <Property Name="IdVille" Type="Int32" />
+          <NavigationProperty Name="Adresse" Relationship="Self.FK_Hebergement_Adresse1" FromRole="Hebergement" ToRole="Adresse" />
           <NavigationProperty Name="Conversations" Relationship="Self.FK_Conversation_Hebergement" FromRole="Hebergement" ToRole="Conversation" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Hebergement_Region" FromRole="Hebergement" ToRole="Region" />
+          <NavigationProperty Name="Ville" Relationship="Self.FK_Hebergement_Ville" FromRole="Hebergement" ToRole="Ville" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Logement_Proprietaire" FromRole="Hebergement" ToRole="Utilisateur" />
           <NavigationProperty Name="TypeHebergement" Relationship="Self.FK_Logement_TypeLogement" FromRole="Hebergement" ToRole="TypeHebergement" />
           <NavigationProperty Name="Messageries" Relationship="Self.FK_Messagerie_Hebergement" FromRole="Hebergement" ToRole="Messagerie" />
@@ -1071,9 +1113,6 @@
           <NavigationProperty Name="MoyenPaiements" Relationship="Self.HebergementMoyenPaiement" FromRole="Hebergement" ToRole="MoyenPaiement" />
           <NavigationProperty Name="Utilisateurs" Relationship="Self.HebergementUtilisateur" FromRole="Hebergement" ToRole="Utilisateur" />
           <NavigationProperty Name="Themes" Relationship="Self.ThemeHebergement" FromRole="Hebergement" ToRole="Theme" />
-          <Property Name="IdRegion" Type="Int32" />
-          <Property Name="IdDepartement" Type="Int32" />
-          <Property Name="IdVille" Type="Int32" />
         </EntityType>
         <EntityType Name="Message">
           <Key>
@@ -1140,6 +1179,7 @@
           <Property Name="IdRegion" Type="Int32" Nullable="false" />
           <Property Name="Nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Departements" Relationship="Self.FK_DEPARTEMENTS_REGIONS" FromRole="Region" ToRole="Departement" />
+          <NavigationProperty Name="Hebergements" Relationship="Self.FK_Hebergement_Region" FromRole="Region" ToRole="Hebergement" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
@@ -1257,6 +1297,7 @@
           <Property Name="Latitude" Type="Double" Nullable="false" />
           <NavigationProperty Name="Adresses" Relationship="Self.FK_Adresse_Ville" FromRole="Ville" ToRole="Adresse" />
           <NavigationProperty Name="Departement" Relationship="Self.FK_VILLES_DEPARTEMENTS" FromRole="Ville" ToRole="Departement" />
+          <NavigationProperty Name="Hebergements" Relationship="Self.FK_Hebergement_Ville" FromRole="Ville" ToRole="Hebergement" />
         </EntityType>
         <Association Name="FK_Adresse_Ville">
           <End Role="Ville" Type="Self.Ville" Multiplicity="0..1" />
@@ -1270,7 +1311,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Hebergement_Adresse">
+        <Association Name="FK_Hebergement_Adresse1">
           <End Role="Adresse" Type="Self.Adresse" Multiplicity="1" />
           <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1343,6 +1384,30 @@
             </Principal>
             <Dependent Role="Ville">
               <PropertyRef Name="IdDepartement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hebergement_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="IdRegion" />
+            </Principal>
+            <Dependent Role="Hebergement">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hebergement_Ville">
+          <End Role="Ville" Type="Self.Ville" Multiplicity="0..1" />
+          <End Role="Hebergement" Type="Self.Hebergement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="IdVille" />
+            </Principal>
+            <Dependent Role="Hebergement">
+              <PropertyRef Name="IdVille" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1541,7 +1606,7 @@
             <End Role="Ville" EntitySet="Villes" />
             <End Role="Adresse" EntitySet="Adresses" />
           </AssociationSet>
-          <AssociationSet Name="FK_Hebergement_Adresse" Association="Self.FK_Hebergement_Adresse">
+          <AssociationSet Name="FK_Hebergement_Adresse1" Association="Self.FK_Hebergement_Adresse1">
             <End Role="Adresse" EntitySet="Adresses" />
             <End Role="Hebergement" EntitySet="Hebergements" />
           </AssociationSet>
@@ -1564,6 +1629,14 @@
           <AssociationSet Name="FK_VILLES_DEPARTEMENTS" Association="Self.FK_VILLES_DEPARTEMENTS">
             <End Role="Departement" EntitySet="Departements" />
             <End Role="Ville" EntitySet="Villes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hebergement_Region" Association="Self.FK_Hebergement_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Hebergement" EntitySet="Hebergements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hebergement_Ville" Association="Self.FK_Hebergement_Ville">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="Hebergement" EntitySet="Hebergements" />
           </AssociationSet>
           <AssociationSet Name="FK_Logement_Proprietaire" Association="Self.FK_Logement_Proprietaire">
             <End Role="Utilisateur" EntitySet="Utilisateurs" />
@@ -1714,6 +1787,8 @@
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Adresse1" ColumnName="Adresse" />
                 <ScalarProperty Name="IdVille" ColumnName="IdVille" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="IdDepartement" ColumnName="IdDepartement" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1782,9 +1857,6 @@
           <EntitySetMapping Name="Hebergements">
             <EntityTypeMapping TypeName="GiteHouseModel.Hebergement">
               <MappingFragment StoreEntitySet="Hebergement">
-                <ScalarProperty Name="IdVille" ColumnName="IdVille" />
-                <ScalarProperty Name="IdDepartement" ColumnName="IdDepartement" />
-                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
                 <ScalarProperty Name="IdHebergement" ColumnName="IdHebergement" />
                 <ScalarProperty Name="IdTypeHebergement" ColumnName="IdTypeHebergement" />
                 <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
@@ -1799,6 +1871,9 @@
                 <ScalarProperty Name="Fumeur" ColumnName="Fumeur" />
                 <ScalarProperty Name="PrixBase" ColumnName="PrixBase" />
                 <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="IdDepartement" ColumnName="IdDepartement" />
+                <ScalarProperty Name="IdVille" ColumnName="IdVille" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

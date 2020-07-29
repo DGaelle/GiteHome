@@ -25,6 +25,8 @@ namespace GiteHouse
         public string Nom { get; set; }
         public string Adresse1 { get; set; }
         public Nullable<int> IdVille { get; set; }
+        public Nullable<int> IdRegion { get; set; }
+        public string IdDepartement { get; set; }
     
         public virtual Ville Ville { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

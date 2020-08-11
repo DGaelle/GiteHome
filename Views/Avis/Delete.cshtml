@@ -1,0 +1,70 @@
+﻿@model GiteHouse.Avi
+
+@{
+
+}
+<h3>Vous êtes sur le point de supprimer cette adresse</h3>
+<div>
+    <h4>En êtes-vous sur?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdHebergement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdHebergement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reponse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reponse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.Nom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+            @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-outline-danger" })
+        </div>
+    }
+</div>

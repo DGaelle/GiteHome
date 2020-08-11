@@ -1,0 +1,57 @@
+﻿@model GiteHouse.Photo
+
+@{
+}
+
+
+    <h5>Vous êtes sur le point de supprimer une photo..</h5>
+    <h5>Souhaitez-vous continuer?</h5>
+    <div>
+        <h4>Photo</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsDefault)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDefault)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NomAleatoire)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NomAleatoire)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Hebergement.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Hebergement.Nom)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+                @Html.ActionLink("Retour à la liste", "Index", null, new { @class= "btn btn-outline-info" })
+            </div>
+        }
+    </div>
+

@@ -1,19 +1,14 @@
 ﻿@model GiteHouse.Adresse
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Hebergements/Create.cshtml";
 }
-
-<h2>Edit</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Adresse</h4>
+        <h4>Modifiez votre Adresse</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdAdresse)
@@ -27,33 +22,50 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Adresse1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Libelle, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Adresse1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Adresse1, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Libelle, "Libellé", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Libelle, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdVille, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IdVille, "-- Ville --", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdVille, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("IdVille", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdVille, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            @Html.LabelFor(model => model.IdRegion, "-- Région --", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdRegion", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdRegion, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdDepartement, "-- Département --", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdDepartement", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IdDepartement, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+      
+            <div class="form-group float-sm-right mt-5">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Enregistrer" class="btn btn-outline-success" />
+                </div>
+            </div>
+        </div>
+    
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-outline-danger" })
 </div>
+  
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

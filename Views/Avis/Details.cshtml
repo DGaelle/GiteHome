@@ -1,0 +1,54 @@
+﻿@model GiteHouse.Avi
+
+@{
+}
+
+
+
+<h4> Avis </h4 >
+
+<div class="d-flex justify-content-center mt-3">
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Commentaire)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Commentaire)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Reponse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Reponse)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+    <div class="mt-5">
+        @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-outline-danger" })
+    </div>

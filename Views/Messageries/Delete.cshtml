@@ -1,0 +1,66 @@
+﻿@model GiteHouse.Messagerie
+
+@{
+
+}
+
+
+    <h3>Vous êtes sur le point de supprimer ce message</h3>
+    <div>
+        <h4>En êtes-vous sur?</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Titre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Titre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Texte)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Texte)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Hebergement.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Hebergement.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Utilisateur.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Utilisateur.Nom)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+                @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-outline-danger" })
+
+            </div>
+        }
+    </div>
+

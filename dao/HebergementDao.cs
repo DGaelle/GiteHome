@@ -12,8 +12,8 @@ namespace GiteHouse.dao
         // GET: Hebergements
         public List<Hebergement> GetHebergements()
         {
-            var hebergements = db.Hebergements.Include(h => h.Adresse).Include(h => h.Utilisateur).Include(h => h.TypeHebergement);
-            return View(hebergements.ToList());
+            var hebergements = db.Hebergements.ToList();
+            return hebergements.ToList();
         }
     }
 }

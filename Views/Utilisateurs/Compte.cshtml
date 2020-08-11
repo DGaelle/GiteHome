@@ -1,10 +1,13 @@
 ﻿@model GiteHouse.Utilisateur
 
+
 <div>
   
+    <h2>Mon Compte</h2>
+
     <hr />
-    <dl class="dl-horizontal">
-        
+    <dl class="pt-5">
+       
         <dt>
             @Html.DisplayNameFor(model => model.Nom)
         </dt>
@@ -20,23 +23,6 @@
         <dd>
             @Html.DisplayFor(model => model.Prenom)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
@@ -61,20 +47,14 @@
             @Html.DisplayFor(model => model.Age)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IdSessionUtilisateur)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdSessionUtilisateur)
-        </dd>
-
     </dl>
 </div>
-<p>
 
-    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-outline-info" })
+<p class="float-lg-right mr-5 pt-5">
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.IdUtilisateur }, new { @class = "btn btn-outline-info btn-lg" }) 
+
 </p>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

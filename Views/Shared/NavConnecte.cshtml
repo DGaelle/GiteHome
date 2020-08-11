@@ -1,36 +1,32 @@
 ﻿@{
-      
+
 }
 
+ 
+        <div class="mt-3">
+            <a class="nav-item" href="@Url.Action("Create","Hebergements")"><i class="fa fa-plus" aria-hidden="true"></i> Nouvelle Annonce </a>
 
-<li>
-    <a class="nav-item" href="@Url.Action("Create","Hebergements")"><i class="fa fa-plus" aria-hidden="true"></i> Nouvelle Annonce </a>
+            <a class="nav-item" href="@Url.Action("Index","Messageries")"><i class="fa fa-envelope-o" aria-hidden="true"></i> Messagerie </a>
 
-    <a class="nav-item" href="@Url.Action("Index","Messages")"><i class="fa fa-envelope-o" aria-hidden="true"></i> Messagerie </a>
+            <a class="nav-item" href="@Url.Action("Index","Hebergements")"><i class="fa fa-folder-open-o" aria-hidden="true"></i> Mes chambres d'hôte </a>
 
-    <a class="nav-item" href="@Url.Action("Index","Hebergements")"><i class="fa fa-folder-open-o" aria-hidden="true"></i> Mes chambres d'hôte </a>
+            <a class="nav-item" href="@Url.Action("Index","Avis")"><i class="fa fa-comments" aria-hidden="true"></i> Mes avis </a>
 
-    <a class="nav-item" href="@Url.Action("Index","Utilisateurs")"><i class="fa fa-comments" aria-hidden="true"></i> Mes avis </a>
+            <a class="nav-item" href="@Url.Action("Index","Saisons")"><i class="fa fa-calendar" aria-hidden="true"></i> Planning </a>
+        </div>
+        <div>
 
-    <a class="nav-item" href="@Url.Action("Index","Saisons")"><i class="fa fa-calendar" aria-hidden="true"></i> Planning </a>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i> Mon Compte
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="@Url.Action("Compte","Utilisateurs")"><i class="fa fa-info-circle" aria-hidden="true"></i> Mes Informations </a>
+                        <a class="dropdown-item" href="@Url.Action("Paiements","Utilisateurs")"><i class="fa fa-bar-chart"></i> Mes Paiements </a>
+                        <a class="dropdown-item" href="@Url.Action("Deconnexion","Utilisateurs")"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-    <div class="right-side d-flex">
-        <form class="form-inline">
-            <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>
-            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user"></i> Mon Compte
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="@Url.Action("Edit","Utilisateurs")"><i class="fa fa-info-circle" aria-hidden="true"></i> Mes Informations </a>
-                    <a class="dropdown-item" href="@Url.Action("Details","Utilisateurs")"> Mon Profil </a>
-                    <a class="dropdown-item" href="@Url.Action("Index","Tarifications")"><i class="fa fa-bar-chart"></i> Mes Paiements </a>
-                    <a class="dropdown-item" href="@Url.Action("Index","Home")"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion </a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</li>

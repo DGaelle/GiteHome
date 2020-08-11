@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GiteHouse.Photo>
+
+@{
+}
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDefault)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomAleatoire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hebergement.Nom)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDefault)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomAleatoire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hebergement.Nom)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.IdPhoto }) |
+                @Html.ActionLink("Details", "Details", new { id=item.IdPhoto }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.IdPhoto })
+            </td>
+        </tr>
+    }
+    
+    </table>

@@ -1,0 +1,57 @@
+﻿@model GiteHouse.ViewModels.PhotoViewModel
+
+@{
+
+}
+
+<div class="progress">
+    <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+@using (Html.BeginForm("Create", "Photos", FormMethod.Post, new{ enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal m-5">
+    <h4> Devenez Hôte <br /><br />Etape 3 : Ajoutez vos photos </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group mt-5 w-100">
+        @Html.LabelFor(model => model.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsDefault, "Photo principale", htmlAttributes: new { @class = "control-label col-md-3" })
+      
+            Oui
+            @Html.RadioButtonFor(model => model.IsDefault, true)
+            Non
+            @Html.RadioButtonFor(model => model.IsDefault, false)
+
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Veuillez télécharger une image", htmlAttributes: new { @class = "control-label col-md-5 mb-3" })
+        <div class="col-md-10">
+            <div class="col-md-10">
+                <input type="file" id="ImageFile" name="ImageFile" class="form-control" required="required">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group float-sm-right pt-5">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Valider" class="btn btn-outline-success btn-lg" />
+        </div>
+    </div>
+</div>
+}
+
+
+

@@ -1,0 +1,105 @@
+﻿@model IEnumerable<GiteHouse.Messagerie>
+
+@{
+      Message message = new Message();
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Texte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hebergement.Nom)
+        </th>
+        
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Texte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hebergement.Nom)
+            </td>
+          
+            <td>
+                <div class="d-flex">
+                    <div>
+                        <button type="button" class="btn btn-outline-info width-responsive btn-sm m-1" data-toggle="modal" data-target="#ajoutMessageModal">
+                            Répondre
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-danger width-responsive btn-sm m-1" data-toggle="modal" data-target="#suppressionMessageModal">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="modal fade" id="ajoutMessageModal" tabindex="-1" role="dialog" aria-labelledby="ajoutMessageModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ajoutMessageModal"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("ReponseMessage", message)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger mr-4" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="suppressionMessageModal" tabindex="-1" role="dialog" aria-labelledby="suppressionMessageModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="suppressionMessageModal"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("SuppressionMessage", message)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary mr-4" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        //javascript
+        $(document).ready(function () {
+        });
+    </script>
+}

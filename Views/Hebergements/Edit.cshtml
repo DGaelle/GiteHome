@@ -4,21 +4,21 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Modifiez votre hébergement</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Hebergement</h4>
+    <div class="form-horizontal mt-5">
+       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdHebergement)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdTypeHebergement, "IdTypeHebergement", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.IdTypeHebergement, "-- Type d'Hébergement --", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10">
                 @Html.DropDownList("IdTypeHebergement", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdTypeHebergement, "", new { @class = "text-danger" })
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DescriptionCourte, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DescriptionCourte, "Description Courte", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DescriptionCourte, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DescriptionCourte, "", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DescriptionLongue, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DescriptionLongue, "Description Longue", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DescriptionLongue, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DescriptionLongue, "", new { @class = "text-danger" })
@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NombreLits, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NombreLits, "Nombre de Lits", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NombreLits, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NombreLits, "", new { @class = "text-danger" })
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NombreChambres, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NombreChambres, "Nombre de Chambres", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NombreChambres, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NombreChambres, "", new { @class = "text-danger" })
@@ -75,43 +75,30 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Animaux, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Animaux)
-                    @Html.ValidationMessageFor(model => model.Animaux, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            Oui
+            @Html.RadioButtonFor(model => model.Animaux, true)
+            Non
+            @Html.RadioButtonFor(model => model.Animaux, false)
+
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Fumeur, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Fumeur)
-                    @Html.ValidationMessageFor(model => model.Fumeur, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            Oui
+            @Html.RadioButtonFor(model => model.Fumeur, true)
+            Non
+            @Html.RadioButtonFor(model => model.Fumeur, false)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PrixBase, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PrixBase, "Prix / Nuit", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PrixBase, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PrixBase, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Statut, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Statut)
-                    @Html.ValidationMessageFor(model => model.Statut, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
+        <div class="form-group float-sm-right mt-5">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Enregistrer" class="btn btn-outline-success" />
             </div>
@@ -119,8 +106,8 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Retour à la liste", "Index", null, new { @class= "btn btn-outline-success"})
+<div class="mt-5">
+    @Html.ActionLink("Retour à la liste", "Index", null, new { @class= "btn btn-outline-danger"})
 </div>
 
 @section Scripts {

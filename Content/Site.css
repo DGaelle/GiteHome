@@ -4,20 +4,23 @@
 .body-content {
     padding-left: 30px;
     padding-right: 30px;
-    width: auto;
-    height: auto;
 }
 .navbar {
-   
     font-size: large;
     font-style: normal;
     background-color: rgba(255, 255, 255, 0.5);
     margin-bottom: 50px;
+    text-transform: uppercase;
 }
 .navbar-brand {
-    color: darkmagenta;
+    color: #ffffcc;
     font-size: 25px;
-    font-weight: bold;
+    text-transform: capitalize;
+    border: dotted;
+    border-color: #ffffcc;
+    border-width: 2px;
+    padding: 7px 4px 7px 4px;
+    border-radius: 3px 4px;
 }
 body {
     padding-bottom: 20px;
@@ -26,24 +29,21 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
-footer {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    position: fixed;
-    bottom: 0;
-    color: white;
-}
-
 a:hover {
-    color: cadetblue;
-    background-color: rgba(177, 134, 67, 0.20);
+    color: white;
+    text-decoration: none;
+    text-emphasis-color: transparent;
+    border: dotted;
+    border-color: white;
+    border-width: 2px;
+    font-weight:bold;
+}
+#navbarDropdownMenuLink:hover {
+    color: white;
     text-decoration: none;
     text-emphasis-color: transparent;
 }
-a:active {
-    color: darkmagenta;
-}
 .logo {
-  
     padding: 4px 7px 2px 4px;
     border-radius: 7px 7px;
     border-color: dimgrey;
@@ -55,88 +55,120 @@ a:active {
 .nav-item, #navbarDropdownMenuLink {
     margin: 4px 10px 4px 10px;
     padding: 4px 7px 2px 4px;
-    color: darkslategrey;
+    color: darkslategray;
 }
-h2, h4 {
-    color: darkslategrey;
+.card h2, h4 {
     text-align: center;
+    color: darkslategrey;
+    text-transform: uppercase;
 }
 .card {
-    border-color: darkslategrey;
-    border-width:4px;
+    border-color: #ccccff;
+    border-width: 4px;
     background-attachment: initial;
-    max-width: 100rem;
-    min-width: 20rem;
-    max-height: 100rem;
-    min-height: 30rem;
+    max-width: 100%;
+    min-width: 30%;
+    max-height: 100%;
+    min-height: 100%;
+    color: #9a9af7;
 }
-.card-title {
+.btn-outline-info {
+    color: #9a9af7;
+    border-color: #9a9af7;
+}
+    .btn-outline-info:hover {
+        background-color: #9a9af7;
+        border-color: #9a9af7;
+        color: white;
+    }
+.btn-outline-success {
+        color: #478b03;
+        border-color: #478b03;
+    }
+    .btn-outline-success:hover {
+            background-color: #478b03;
+            border-color: #478b03;
+            color: white;
+        }
+.btn-outline-danger {
+    color: #f31b64;
+    border-color: #f31b64;
+}
+    .btn-outline-danger:hover {
+        background-color: #f31b64;
+        border-color: #f31b64;
+        color: white;
+    }
+.card-body::after {
+    text-align: center;
+    text-transform: uppercase;
+    }
+dt, th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: darkslategrey;
+    border-bottom: dotted;
+    border-bottom-color: grey;
+    border-bottom-width: 1px;
+    text-transform: uppercase;
+    font-size: large;
+    text-align:center;
+}
+dd, td {
+    padding-top: 10px;
+    font-size: large;
     text-align: center;
 }
-.card-link{
-    color:white;
-    font-size: x-large;
+.bg-nav {
+    background-color: #ccccff;
 }
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+.bg-card {
+    background-color: #ffffcc;
+}
+.card-link {
+    color: darkslategrey;
+    font-size: x-large;
+    text-transform: uppercase;
+    padding: 50px 10px 50px 50px;
+}
+.card-body{
+    font-size: large;
+}
+#connexionPage{
+    justify-content:center;
+}
 .dl-horizontal dt {
     white-space: normal;
 }
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
 }
-
-/*.vertical-nav {
-    min-width: 17rem;
-    width: 17rem;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s;
+footer {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    bottom: auto;
+    bottom: 0;
 }
-
-.page-content {
-    width: calc(100% - 17rem);
-    margin-left: 17rem;
-    transition: all 0.4s;
-}*/
-
-/* for toggle behavior */
-
-/*#sidebar.active {
-    margin-left: -17rem;
+#cardPaiement {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    margin-bottom: 1rem;
 }
-
-#content.active {
-    width: 100%;
-    margin: 0;
+.bg-gradient-info {
+    color: #fff;
+    background: #17a2b8 linear-gradient(180deg,#3ab0c3,#17a2b8) repeat-x !important;
 }
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -17rem;
-    }
-
-        #sidebar.active {
-            margin-left: 0;
-        }
-
-    #content {
-        width: 100%;
-        margin: 0;
-    }
-
-        #content.active {
-            margin-left: 17rem;
-            width: calc(100% - 17rem);
-        }
-}*/
 
 

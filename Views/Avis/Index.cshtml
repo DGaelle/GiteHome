@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GiteHouse.Avi>
+
+@{
+
+}
+
+<h4> Avis concernant vos hébergements</h4>
+
+<table class="table mt-5">
+    <tr>
+        <th>
+            @Html.DisplayName("Hebergement")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @{ 
+                 var list = item.Hebergements.ToList();
+
+            }
+                @item.IdHebergement
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reponse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utilisateur.Nom)
+            </td>
+            <td>
+                @Html.ActionLink("Détail", "Details", new { id = item.IdAvi }, new { @class = "btn btn-outline-info" }) 
+            </td>
+        </tr>
+    }
+
+</table>

@@ -7,8 +7,6 @@ namespace GiteHouse.Models
 {
     public class SessionUser
     {
-
-        public int IdSessionUser { get; set; }
         public Utilisateur User { get; set; }
         public Hebergement Hebergement { get; set; }
     }

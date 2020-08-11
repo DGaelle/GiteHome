@@ -4,33 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a4d1fca02a8f4ac2ae378193da4b42a8" Name="Diagram1">
-        <EntityTypeShape EntityType="GiteHouseModel.Activite" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+      <Diagram DiagramId="46bcde1e46064cbca91bb160bb9c49a0" Name="Diagram1">
+        <EntityTypeShape EntityType="GiteHouseModel.Activite" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.Administrateur" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Adresse" Width="1.5" PointX="7.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Adresse" Width="1.5" PointX="7.5" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.AppointmentDiary" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Avi" Width="1.5" PointX="19.25" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Conversation" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Departement" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Equipement" Width="1.5" PointX="7.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Avi" Width="1.5" PointX="19.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Conversation" Width="1.5" PointX="12" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Departement" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Equipement" Width="1.5" PointX="7.5" PointY="24.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.Genre" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Hebergement" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Message" Width="1.5" PointX="14.25" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Messagerie" Width="1.5" PointX="12" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.MoyenPaiement" Width="1.5" PointX="12" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Photo" Width="1.5" PointX="12" PointY="21.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Prestation" Width="1.5" PointX="19.25" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Region" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Reservation" Width="1.5" PointX="14.25" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Saison" Width="1.5" PointX="19.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Hebergement" Width="1.5" PointX="9.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Message" Width="1.5" PointX="14.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Messagerie" Width="1.5" PointX="12" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.MoyenPaiement" Width="1.5" PointX="12" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Photo" Width="1.5" PointX="12" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Prestation" Width="1.5" PointX="19.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Region" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Reservation" Width="1.5" PointX="14.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Saison" Width="1.5" PointX="19.25" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.SessionUtilisateur" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.sysdiagram" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Tarification" Width="1.5" PointX="15" PointY="20.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Theme" Width="1.5" PointX="12" PointY="31.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.TypeHebergement" Width="1.5" PointX="7.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Tarification" Width="1.5" PointX="15" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Theme" Width="1.5" PointX="12" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.TypeHebergement" Width="1.5" PointX="7.5" PointY="27.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GiteHouseModel.TypeSejour" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Utilisateur" Width="1.5" PointX="17" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="GiteHouseModel.Ville" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Utilisateur" Width="1.5" PointX="17" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiteHouseModel.Ville" Width="1.5" PointX="5.25" PointY="21.875" IsExpanded="true" />
+        <AssociationConnector Association="GiteHouseModel.FK_Adresse_Departement" ManuallyRouted="false" />
+        <AssociationConnector Association="GiteHouseModel.FK_Adresse_Region" ManuallyRouted="false" />
         <AssociationConnector Association="GiteHouseModel.FK_Adresse_Ville" ManuallyRouted="false" />
         <AssociationConnector Association="GiteHouseModel.FK_Hebergement_Adresse1" ManuallyRouted="false" />
         <AssociationConnector Association="GiteHouseModel.FK_Avi_Utilisateur" ManuallyRouted="false" />

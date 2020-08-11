@@ -54,7 +54,7 @@ namespace GiteHouse.Controllers
             {
                 db.Messages.Add(message);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Messageries");
             }
 
             ViewBag.IdConversation = new SelectList(db.Conversations, "IdConversation", "Titre", message.IdConversation);

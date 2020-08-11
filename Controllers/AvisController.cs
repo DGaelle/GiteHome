@@ -7,115 +7,118 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GiteHouse;
+using GiteHouse.Models;
 
 namespace GiteHouse.Controllers
 {
-    public class SaisonsController : Controller
+    public class AvisController : Controller
     {
         private GiteHouseEntities db = new GiteHouseEntities();
 
-        // GET: Saisons
+        // GET: Avis
         public ActionResult Index()
         {
-            var saisons = db.Saisons.Include(s => s.Utilisateur);
-            return View(saisons.ToList());
+            SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+            
+            var avis = db.Avis.Include(a => a.Utilisateur).Include(a => a.Hebergements).Where(a => a.IdUtilisateur == sessionUser.User.IdUtilisateur).ToList();
+            return View(avis.ToList());
         }
 
-        // GET: Saisons/Details/5
+        // GET: Avis/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saison saison = db.Saisons.Find(id);
-            if (saison == null)
+            Avi avi = db.Avis.Find(id);
+            if (avi == null)
             {
                 return HttpNotFound();
             }
-            return View(saison);
+            return View(avi);
         }
 
-        // GET: Saisons/Create
+        // GET: Avis/Create
         public ActionResult Create()
         {
             ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom");
             return View();
         }
 
-        // POST: Saisons/Create
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Avis/Create
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdSaison,IdUtilisateur,DateDebut,DateFin,Nom,PrixNuit")] Saison saison)
+        public ActionResult Create([Bind(Include = "IdAvi,IdUtilisateur,IdHebergement,Note,Commentaire,Date,Reponse")] Avi avi)
         {
             if (ModelState.IsValid)
             {
-                db.Saisons.Add(saison);
+                db.Avis.Add(avi);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", saison.IdUtilisateur);
-            return View(saison);
+            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", avi.IdUtilisateur);
+            return View(avi);
         }
 
-        // GET: Saisons/Edit/5
+        // GET: Avis/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saison saison = db.Saisons.Find(id);
-            if (saison == null)
+            Avi avi = db.Avis.Find(id);
+            if (avi == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", saison.IdUtilisateur);
-            return View(saison);
+            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", avi.IdUtilisateur);
+            return View(avi);
         }
 
-        // POST: Saisons/Edit/5
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Avis/Edit/5
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdSaison,IdUtilisateur,DateDebut,DateFin,Nom,PrixNuit")] Saison saison)
+        public ActionResult Edit([Bind(Include = "IdAvi,IdUtilisateur,IdHebergement,Note,Commentaire,Date,Reponse")] Avi avi)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(saison).State = EntityState.Modified;
+                db.Entry(avi).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", saison.IdUtilisateur);
-            return View(saison);
+            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", avi.IdUtilisateur);
+            return View(avi);
         }
 
-        // GET: Saisons/Delete/5
+        // GET: Avis/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saison saison = db.Saisons.Find(id);
-            if (saison == null)
+            Avi avi = db.Avis.Find(id);
+            if (avi == null)
             {
                 return HttpNotFound();
             }
-            return View(saison);
+            return View(avi);
         }
 
-        // POST: Saisons/Delete/5
+        // POST: Avis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Saison saison = db.Saisons.Find(id);
-            db.Saisons.Remove(saison);
+            Avi avi = db.Avis.Find(id);
+            db.Avis.Remove(avi);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

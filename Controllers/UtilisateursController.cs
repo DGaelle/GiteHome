@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GiteHouse;
+using GiteHouse.dao;
 using GiteHouse.Models;
 
 namespace GiteHouse.Controllers
@@ -66,14 +67,28 @@ namespace GiteHouse.Controllers
             return View(sessionUser.User);
         }
 
-        // GET: Utilisateurs/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Paiements()
         {
-            if (id == null)
+            SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+
+            decimal total = 0;
+            ReservationDao reservationDao = new ReservationDao();
+            List<Reservation> reservations = reservationDao.GetReservations(sessionUser.User.IdUtilisateur);
+
+            foreach (Reservation item in reservations)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                total += (decimal)item.Prix;
             }
-            Utilisateur utilisateur = db.Utilisateurs.Find(id);
+            ViewBag.total = total;
+            return View();
+        }
+
+        // GET: Utilisateurs/Details/5
+        public ActionResult Details()
+        {
+        SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+
+            Utilisateur utilisateur = db.Utilisateurs.Find(sessionUser.User.IdUtilisateur);
             if (utilisateur == null)
             {
                 return HttpNotFound();
@@ -109,6 +124,8 @@ namespace GiteHouse.Controllers
         // GET: Utilisateurs/Edit/5
         public ActionResult Edit(int? id)
         {
+            SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -133,7 +150,7 @@ namespace GiteHouse.Controllers
             {
                 db.Entry(utilisateur).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Compte");
             }
             ViewBag.IdGenre = new SelectList(db.Genres, "IdGenre", "Nom", utilisateur.IdGenre);
             return View(utilisateur);

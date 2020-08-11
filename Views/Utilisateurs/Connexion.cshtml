@@ -4,13 +4,13 @@
     ViewBag.Title = "Connexion";
 }
 
-<h2>Connexion</h2>
+<h2>Connectez-vous</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div id="connexionPage" class="form-horizontal pt-5">
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -30,9 +30,9 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group float-lg-right mr-5 pt-5">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Valider" class="btn btn-outline-success" />
+                <input type="submit" value="Connexion" class="btn btn-outline-info m-2 btn-lg" />
             </div>
         </div>
     </div>

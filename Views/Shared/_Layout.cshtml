@@ -15,64 +15,68 @@
     @Styles.Render("~/font-awesome/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body class="d-flex flex-column">
 
-    <nav class="navbar navbar-expand-xl bg-sxxs mt-auto ">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-8" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="media-body">
-            <a class="navbar-brand" href="@Url.Action("Compte", "Utilisateurs")">
-                <img src="~/images/yourte.jpg" width="70" height="70" alt="logo" class="logo">
-                @Html.ActionLink("GiteHouse", "Compte", "Utilisateurs", new { @class = "navbar-brand" })
-            </a>
-        </div>
-        <div class="collapse navbar-collapse justify-content-between" id="navbar-list-8">
-            <ul class="navbar-nav">
-                @{
-                    if (sessionUser != null && sessionUser.User != null)
-
-                    {
-                        @Html.Partial("NavConnecte")
-                    }
-                    else
-                    {
-                        @Html.ActionLink("GiteHouse", "Connexion", "Utilisateurs", new { @class = "navbar-brand" })
-                    }
+    <nav class="navbar navbar-expand-xl bg-nav justify-content-between">
+        <div class="nav-item">
+            @{
+                if (sessionUser != null && sessionUser.User != null)
+                {
+                    <a class="navbar-brand" href="@Url.Action("Compte", "Utilisateurs")">
+                        <img src="~/images/yourte.jpg" width="50" height="50" alt="logo" class="logo">
+                        @Html.ActionLink("GiteHouse", "Compte", "Utilisateurs", null, new { @class = "navbar-brand" })
+                    </a>
                 }
-            </ul>
+                else
+                {
+                    <a class="navbar-brand" href="@Url.Action("Connexion", "Utilisateurs")">
+                        <img src="~/images/yourte.jpg" width="50" height="50" alt="logo" class="logo">
+                        @Html.ActionLink("GiteHouse", "Connexion", null, "Utilisateurs", new { @class = "navbar-brand" })
+                    </a>
+                }
+            }
+        </div>
+        <div class="navbar-nav justify-content-end">
+
+            @{
+                if (sessionUser != null && sessionUser.User != null)
+
+                {
+                    @Html.Partial("NavConnecte")
+                }
+                else
+                {
+                    @Url.Action("Connexion", "Utilisateurs")
+                }
+            }
         </div>
     </nav>
 
     <div class="container body-content m-auto">
-        <div class="card">
-            <div class="card-title bg-dark">
+        <div class="card bg-card p-5 mt-5">
+            <div class="card-title bg-nav text-center p-3">
                 @{
                     if (sessionUser != null && sessionUser.User != null)
-
                     {
-                                <a class="card-link" href="@Url.Action("Compte", "Utilisateurs")"> Bienvenue @sessionUser.User.Prenom @sessionUser.User.Nom </a>
+                        <a class="card-link" href="@Url.Action("Compte", "Utilisateurs")"> @sessionUser.User.Prenom @sessionUser.User.Nom </a>
                     }
                 }
             </div>
-            <div class="card-body">
+            <div class="card-body bg-card pt-5 pr-5 pl-5">
                 @RenderBody()
             </div>
             <div class="card-footer bg-dark">
-
             </div>
-            </div>
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
-            </footer>
         </div>
-
+        <hr />
+        <footer>
+            <p style="color: #9a9af7; font-size: large">&copy; @DateTime.Now.Year - GiteHouse Jury Project </p>
+        </footer>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/fullcalendar")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
 </body>
 </html>

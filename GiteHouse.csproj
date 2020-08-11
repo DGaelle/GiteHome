@@ -144,11 +144,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdressesController.cs" />
+    <Compile Include="Controllers\AvisController.cs" />
     <Compile Include="Controllers\HebergementsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageriesController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
-    <Compile Include="Controllers\SaisonsController.cs" />
-    <Compile Include="Controllers\TarificationsController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Conversation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -156,6 +157,8 @@
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Repositories\IRegionRepository.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
+    <Compile Include="dao\HebergementDao.cs" />
+    <Compile Include="dao\ReservationDao.cs" />
     <Compile Include="Departement.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -245,6 +248,7 @@
     <Compile Include="Utilisateur.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="Ville.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -307,8 +311,8 @@
     <Content Include="images\yourte.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -457,11 +461,6 @@
     <Content Include="Views\Hebergements\Details.cshtml" />
     <Content Include="Views\Hebergements\Edit.cshtml" />
     <Content Include="Views\Hebergements\Index.cshtml" />
-    <Content Include="Views\Clients\Create.cshtml" />
-    <Content Include="Views\Clients\Delete.cshtml" />
-    <Content Include="Views\Clients\Details.cshtml" />
-    <Content Include="Views\Clients\Edit.cshtml" />
-    <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Scripts\moment.min.js.map" />
     <Content Include="Scripts\moment-with-locales.min.js.map" />
     <Content Include="Views\Utilisateurs\Create.cshtml" />
@@ -470,35 +469,37 @@
     <Content Include="Views\Utilisateurs\Edit.cshtml" />
     <Content Include="Views\Utilisateurs\Index.cshtml" />
     <Content Include="Views\Messages\Create.cshtml" />
-    <Content Include="Views\Messages\Delete.cshtml" />
     <Content Include="Views\Messages\Details.cshtml" />
-    <Content Include="Views\Messages\Edit.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
-    <Content Include="Views\Tarifications\Create.cshtml" />
-    <Content Include="Views\Tarifications\Delete.cshtml" />
-    <Content Include="Views\Tarifications\Details.cshtml" />
-    <Content Include="Views\Tarifications\Edit.cshtml" />
-    <Content Include="Views\Tarifications\Index.cshtml" />
-    <Content Include="Views\Hebergements\CreateImage.cshtml" />
+    <Content Include="Views\Utilisateurs\Connexion.cshtml" />
+    <Content Include="Views\Hebergements\Create.cshtml" />
+    <Content Include="Views\Shared\NavConnecte.cshtml" />
+    <Content Include="Views\Utilisateurs\Compte.cshtml" />
     <Content Include="Views\Adresses\Create.cshtml" />
     <Content Include="Views\Adresses\Delete.cshtml" />
     <Content Include="Views\Adresses\Details.cshtml" />
     <Content Include="Views\Adresses\Edit.cshtml" />
-    <Content Include="Views\Adresses\Index.cshtml" />
-    <Content Include="Views\Saisons\Create.cshtml" />
-    <Content Include="Views\Saisons\Delete.cshtml" />
-    <Content Include="Views\Saisons\Details.cshtml" />
-    <Content Include="Views\Saisons\Edit.cshtml" />
-    <Content Include="Views\Saisons\Index.cshtml" />
-    <Content Include="Views\Utilisateurs\Connexion.cshtml" />
-    <Content Include="Views\Hebergements\Create.cshtml" />
-    <Content Include="Views\Shared\NavConnecte.cshtml" />
-    <Content Include="Views\Shared\NavConnexion.cshtml" />
-    <Content Include="Views\Utilisateurs\Compte.cshtml" />
+    <Content Include="Views\Photos\Create.cshtml" />
+    <Content Include="Views\Photos\Delete.cshtml" />
+    <Content Include="Views\Photos\Details.cshtml" />
+    <Content Include="Views\Photos\Edit.cshtml" />
+    <Content Include="Views\Photos\Index.cshtml" />
+    <Content Include="Views\Utilisateurs\Paiements.cshtml" />
+    <Content Include="Views\Shared\ModalPhoto.cshtml" />
+    <Content Include="Views\Messageries\Create.cshtml" />
+    <Content Include="Views\Messageries\Delete.cshtml" />
+    <Content Include="Views\Messageries\Details.cshtml" />
+    <Content Include="Views\Messageries\Edit.cshtml" />
+    <Content Include="Views\Messageries\Index.cshtml" />
+    <Content Include="Views\Shared\ReponseMessage.cshtml" />
+    <Content Include="Views\Avis\Create.cshtml" />
+    <Content Include="Views\Avis\Delete.cshtml" />
+    <Content Include="Views\Avis\Details.cshtml" />
+    <Content Include="Views\Avis\Index.cshtml" />
+    <Content Include="Views\Shared\SuppressionMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,0 +1,50 @@
+﻿@model GiteHouse.Photo
+
+@using (Html.BeginForm("Create", "Photos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Hidden("IdHebergement", Model.IdHebergement)
+
+    <div class="form-horizontal">
+        <h4>Ajoutez une Photo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NomAleatoire, "Nom Aléatoire", htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NomAleatoire, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NomAleatoire, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsDefault, "Photo principale", htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsDefault)
+                    @Html.ValidationMessageFor(model => model.IsDefault, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Veuillez télécharger une image", htmlAttributes: new { @class = "control-label col-md-8" })
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    <input type="file" id="ImageFile" name="ImageFile" class="form-control" required="required">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group float-right">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Valider" class="btn btn-outline-success" />
+            </div>
+        </div>
+        <div>
+
+
+        </div>
+    </div>
+}

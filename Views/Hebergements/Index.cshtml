@@ -4,56 +4,72 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="mb-3">Vos chambres d'hôte</h2>
 
 
-<table class="table">
+<table class="table mt-5">
     <tr>
-    <th>
-        
-    </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photos)
+
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Nom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DescriptionCourte)
+            @Html.DisplayName("Description Courte")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Surface)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PrixBase)
+            @Html.DisplayName("Prix / Nuit")
         </th>
-        <th></th>
+        <th>
+            Action
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="../@item.Photos.First().Nom" alt="PhotoVilla" width="200"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescriptionCourte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surface)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixBase)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ if (item.Photos.Count > 0)
+                    {
+                        <img src="../@item.Photos.First().Nom" alt="Photo" height="100" width="100" />
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionCourte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surface)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixBase)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdHebergement }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdHebergement }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdHebergement })
-        </td>
-    </tr>
-}
+            <td>
+                <div class="d-flex mt-3">
+                    <div>
+                        @Html.ActionLink("Modifier", "Edit", new { id = item.IdHebergement }, new { @class = "btn btn-outline-info btn-sm m-2", @style = "responsive-width" })  
+                    </div>
+                    <div>
+                        @Html.ActionLink("Détails", "Details", new { id = item.IdHebergement }, new { @class = "btn btn-outline-secondary btn-sm m-2", @style = "responsive-width" }) 
+                    </div>
+                    <div>
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.IdHebergement }, new { @class = "btn btn-outline-danger btn-sm m-2", @style = "responsive-width" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>
-<p>
-    @Html.ActionLink("Ajouter un hébergement", "Create", null, new { @class= "btn btn-outline-success"})
+<p class="float-lg-right mr-5 mt-5">
+    @Html.ActionLink("Ajouter", "Create", null, new { @class = "btn btn-outline-success btn-lg" })
 </p>

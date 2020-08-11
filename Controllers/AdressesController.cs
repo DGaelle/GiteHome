@@ -18,7 +18,8 @@ namespace GiteHouse.Controllers
         // GET: Adresses
         public ActionResult Index()
         {
-            return View(db.Adresses.ToList());
+            var adresses = db.Adresses.Include(a => a.Departement).Include(a => a.Region).Include(a => a.Ville);
+            return View(adresses.ToList());
         }
 
         // GET: Adresses/Details/5
@@ -39,38 +40,36 @@ namespace GiteHouse.Controllers
         // GET: Adresses/Create
         public ActionResult Create()
         {
-            if (Session["Utilisateur"] != null)
-            {
-                SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
-
-                if (sessionUser != null)
-                {
-                    ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom");
-                    ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom");
-                    ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "Nom");
-                }
-
-            }
+            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom");
+            ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom");
+            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "Nom");
             return View();
         }
 
         // POST: Adresses/Create
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nom,Adresse1,IdVille")] Adresse adresse)
+        public ActionResult Create([Bind(Include = "IdAdresse,Nom,Libelle,IdVille,IdRegion,IdDepartement")] Adresse adresse)
         {
             if (ModelState.IsValid)
             {
-            
-              //  adresse.
+                SessionUser sessionUser = (SessionUser)Session["Utilisateur"];
+                sessionUser.Hebergement.Adresse = adresse;
 
+                db.Hebergements.Add(sessionUser.Hebergement);
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                int id = sessionUser.Hebergement.IdHebergement;
+                Session["Utilisateur"] = sessionUser;
+                return RedirectToAction("Create", "Photos");
             }
 
-            return View(adresse);
+            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom", adresse.IdDepartement);
+            ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom", adresse.IdRegion);
+            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "IdDepartement", adresse.IdVille);
+            return View();
         }
 
         // GET: Adresses/Edit/5
@@ -85,15 +84,18 @@ namespace GiteHouse.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom", adresse.IdDepartement);
+            ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom", adresse.IdRegion);
+            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "IdDepartement", adresse.IdVille);
             return View(adresse);
         }
 
         // POST: Adresses/Edit/5
-        // Pour vous protéger des attaques par survalidation, activez les propriétés spécifiques auxquelles vous souhaitez vous lier. Pour 
-        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAdresse,Nom,Adresse1,IdVille")] Adresse adresse)
+        public ActionResult Edit([Bind(Include = "IdAdresse,Nom,Libelle,IdVille,IdRegion,IdDepartement")] Adresse adresse)
         {
             if (ModelState.IsValid)
             {
@@ -101,6 +103,9 @@ namespace GiteHouse.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.IdDepartement = new SelectList(db.Departements, "IdDepartement", "Nom", adresse.IdDepartement);
+            ViewBag.IdRegion = new SelectList(db.Regions, "IdRegion", "Nom", adresse.IdRegion);
+            ViewBag.IdVille = new SelectList(db.Villes, "IdVille", "IdDepartement", adresse.IdVille);
             return View(adresse);
         }
 

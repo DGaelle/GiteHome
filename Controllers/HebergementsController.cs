@@ -38,6 +38,9 @@ namespace GiteHouse.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Hebergement hebergement = db.Hebergements.Find(id);
+            ViewBag.idHebergement = id;
+            ViewBag.photosListe = hebergement.Photos.ToList();
+
             if (hebergement == null)
             {
                 return HttpNotFound();
@@ -90,36 +93,7 @@ namespace GiteHouse.Controllers
                 ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom", hebergement.IdTypeHebergement);
                 return View();
             }
-
         }
-
-        // GET: Hebergements/Create
-        public ActionResult CreateImage()
-        {
-            ViewBag.IdAdresse = new SelectList(db.Adresses, "IdAdresse", "Nom");
-            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom");
-            ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom");
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateImage([Bind(Include = "IdPhoto, Nom, IdHebergement, IsDefault, NomAleatoire")] Hebergement hebergement)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Hebergements.Add(hebergement);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.IdAdresse = new SelectList(db.Adresses, "IdAdresse", "Nom", hebergement.IdAdresse);
-            ViewBag.IdUtilisateur = new SelectList(db.Utilisateurs, "IdUtilisateur", "Nom", hebergement.IdUtilisateur);
-            ViewBag.IdTypeHebergement = new SelectList(db.TypeHebergements, "IdTypeHebergement", "Nom", hebergement.IdTypeHebergement);
-            return View(hebergement);
-        }
-
-
         // GET: Hebergements/Edit/5
         public ActionResult Edit(int? id)
         {

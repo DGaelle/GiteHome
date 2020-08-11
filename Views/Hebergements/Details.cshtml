@@ -1,130 +1,189 @@
 ﻿@model GiteHouse.Hebergement
 
 @{
+    List<Photo> photosListe = ViewBag.photosListe;
     ViewBag.Title = "Details";
+    Photo photo = new Photo();
+    photo.IdHebergement = ViewBag.idHebergement;
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayNameFor(model => model.Nom)</h2>
 
-<div>
-    <h4>Hebergement</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdVille)
-        </dt>
+<div class="d-flex justify-content-between mt-3">
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdVille)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom)
-        </dt>
+        <hr />
+        <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.Nom)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DescriptionCourte)
-        </dt>
+            <dt>
+                @Html.DisplayName("Description Courte")
 
-        <dd>
-            @Html.DisplayFor(model => model.DescriptionCourte)
-        </dd>
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DescriptionLongue)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DescriptionCourte)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DescriptionLongue)
-        </dd>
+            <dt>
+                @Html.DisplayName("Description Longue")
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Surface)
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Surface)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DescriptionLongue)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NombreLits)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Surface)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NombreLits)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Surface)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NombreChambres)
-        </dt>
+            <dt>
+                @Html.DisplayName("Nombre de Lits")
 
-        <dd>
-            @Html.DisplayFor(model => model.NombreChambres)
-        </dd>
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Animaux)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NombreLits)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Animaux)
-        </dd>
+            <dt>
+                @Html.DisplayName("Nombre de Chambres")
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fumeur)
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fumeur)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.NombreChambres)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PrixBase)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Animaux)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PrixBase)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Animaux)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Statut)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Fumeur)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Statut)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Fumeur)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Adresse.Nom)
-        </dt>
+            <dt>
+                @Html.DisplayName("Prix / Nuit")
 
-        <dd>
-            @Html.DisplayFor(model => model.Adresse.Nom)
-        </dd>
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur.Nom)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrixBase)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Utilisateur.Nom)
-        </dd>
+            <dt>
+                @Html.DisplayName("Type d'Hébergement")
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeHebergement.Nom)
-        </dt>
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TypeHebergement.Nom)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TypeHebergement.Nom)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <div>
+        @if (photosListe != null && photosListe.Count > 0)
+        {
+
+            <table class="table mt-3">
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        Nom
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+
+
+                @foreach (var item in photosListe)
+                {
+                    <tr>
+                        <td>
+                            <img src="../../@item.Nom" alt="DetailsPhoto" width="100" height="70" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomAleatoire)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Supprimer", "Delete", "Photos", new { id = item.IdPhoto }, new { @class = "btn btn-outline-danger" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <div class="alert-danger mt-5 table-responsive">
+                Nous sommes désolés mais aucune photo n'est disponible pour ce bien.
+            </div>
+        }
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdHebergement }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<div class="d-flex justify-content-around mt-5">
+
+    <div>
+        @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-outline-danger" })
+    </div>
+    <div>
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.IdHebergement }, new { @class = "btn btn-outline-info" })
+    </div>
+    <div>
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ajoutPhotoModal">
+            Ajouter une photo
+        </button>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="ajoutPhotoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ajoutPhotoModal"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("ModalPhoto", photo)
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger mr-3" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        //javascript
+        $(document).ready(function () {
+        });
+    </script>
+}

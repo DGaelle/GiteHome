@@ -1,14 +1,10 @@
 ﻿@model GiteHouse.Adresse
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Hebergements/Create.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Adresse</h4>
+    <h4>Récapitulatif de votre adresse</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,24 +16,45 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Adresse1)
+            @Html.DisplayNameFor(model => model.Libelle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Adresse1)
+            @Html.DisplayFor(model => model.Libelle)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdVille)
+            @Html.DisplayNameFor(model => model.Departement.Nom)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdVille)
+            @Html.DisplayFor(model => model.Departement.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville.IdDepartement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville.IdDepartement)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAdresse }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div class="d-flex justify-content-around mt-5">
+    <div>
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.IdAdresse }, new { @class = "btn btn-outline-danger" })
+    </div>
+    <div>
+        @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn btn-outline-danger" })
+    </div>
+</div>
